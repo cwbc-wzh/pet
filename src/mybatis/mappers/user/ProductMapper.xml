@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lq.mapper.ProductsMapper">
+    <!--分页查询宠物-->
+    <select id="queryProductsList"  resultType="Products">
+      SELECT p_age,p_kid,p_num,p_sex,p_kind,p_name,p_path,p_price,p_bodytype,p_purchase
+        from products
+        <where>
+            1=1
+            <if test="type!=3">
+              AND p_kind=#{type}
+            </if>
+        </where>
+        ORDER BY p_purchase DESC
+        limit #{currPage},#{end}
+    </select>
+    <!--查询符合条件的宠物数量-->
+    <select id="queryProductsCountByType" parameterType="string" resultType="int">
+        SELECT COUNT(*) FROM products
+        <where>
+            1=1
+            <if test="type!=3">
+                AND p_kind=#{type}
+            </if>
+        </where>
+    </select>
+    <!--查询宠物实体-->
+    <select id="queryProductById" resultType="Products">
+          SELECT p_age,p_kid,p_num,p_sex,p_kind,p_name,p_path,p_price,p_bodytype,p_purchase,market_price,p_title
+          FROM products
+          WHERE p_kid=#{kid}
+    </select>
+
+    <!--查询-->
+    <select id="queryImagesByKid" resultType="Images" >
+          select i_id,p_kid,image_path from imager WHERE p_kid=#{kid};
+    </select>
+
+</mapper>

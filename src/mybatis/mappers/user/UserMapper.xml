@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lq.mapper.UserMapper" >
+    <select id="findUserByUserPass" parameterType="string" resultType="user">
+      SELECT u_id,u_name,u_passwd,u_email from USER where u_name=#{username} AND u_passwd=#{password}
+    </select>
+
+    <select id="finUserByUserName" parameterType="string" resultType="User">
+        SELECT u_id,u_name,u_passwd FROM USER where u_name=#{userName}
+
+    </select>
+</mapper>
