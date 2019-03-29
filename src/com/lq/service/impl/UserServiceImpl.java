@@ -3,6 +3,7 @@ package com.lq.service.impl;
 import com.lq.mapper.UserMapper;
 import com.lq.model.User;
 import com.lq.service.UserService;
+import com.lq.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @since
  */
 @Service
+
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -48,7 +50,7 @@ public class UserServiceImpl implements UserService {
      * @return 用户实体
      *  @Transactional 事务回滚
      */
-    @Transactional
+
     @Override
     public User queryUserInfo(String userName) {
         System.out.println("start UserServiceImpl.queryUserInfo username is " + userName);
@@ -58,10 +60,25 @@ public class UserServiceImpl implements UserService {
             user = userMapper.finUserByUserName(userName);
         } catch (Exception e) {
             System.out.println("UserServiceImpl.queryUserInfo userName is " + userName);
+
         }
         System.out.println("userServiceImpl,queryUserInfo username is" + userName);
 
 
         return user;
     }
+
+
+    @Override
+    public void addUserInfo(User user) {
+
+        user.setU_id(StringUtils.getUUID());
+        try {
+            userMapper.insertUserInfo(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

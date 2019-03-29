@@ -1,12 +1,16 @@
 package com.lq.controller;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.lq.model.Products;
 import com.lq.model.User;
 import com.lq.service.PetService;
 import com.lq.service.UserService;
 import com.lq.util.PageBean;
+import com.lq.util.StringUtils;
+import com.lq.util.VerifyCode;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +21,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 /**
  * @author jiajing
@@ -42,27 +48,55 @@ public class LoginController {
      * @param username
      * @param password
      * @param request
-     * @param response
      * @return
      */
     @RequestMapping(value = "/login")
-    public String loginUser(String username, String password, HttpServletRequest request, HttpServletResponse response) {
+    public String loginUser(String username, String password, HttpServletRequest request) {
         System.out.println("LoginController.loginUser username is " + username + " password is " + password);
         HttpSession session = request.getSession();
         User user = userService.queryUserInfo(username, password);
         if (user != null) {
             session.setAttribute("username", username);
         } else {
-            return "userlogin";
+            return "/userlogin";
         }
         return "redirect:/Pet.do";
     }
 
+
+    /***
+     * 用户登录
+     * @param username
+     * @param password
+     * @param request
+     * @param response
+     * @return
+     */
+    @RequestMapping(value = "/checkLogin")
+    @ResponseBody
+    public String checkLogin(String username, String password, HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("LoginController.checkLogin username is " + username + " password is " + password);
+        HttpSession session = request.getSession();
+        User user = userService.queryUserInfo(username, password);
+        if (user != null) {
+            session.setAttribute("username", username);
+        } else {
+            return "FAIL";
+        }
+        return "SUCCESS";
+    }
+
+
     @RequestMapping(value = "/findUser.do")
     @ResponseBody
-    public JSONObject findUserInfo(@RequestParam String userName) {
+    public String findUserInfo(@RequestParam String userName) {
         System.out.println("start LoginController.finUserInfo userName is " + userName);
-        return  null;
+
+        User user=userService.queryUserInfo(userName);
+        if(user==null){
+            return "SUCCESS";
+        }
+        return "FAIL";
     }
 
     /***
@@ -70,16 +104,58 @@ public class LoginController {
      * @param request
      * @return
      */
-    @RequestMapping(value = "register.do")
+    @RequestMapping(value = "/register.do")
+    @ResponseBody
     public String registerUser(HttpServletRequest request) {
         System.out.println("start LoginController.registerUser ");
         String name = request.getParameter("username");
         String password = request.getParameter("password");
         String email = request.getParameter("email");
         String codetext = request.getParameter("codetext");
-        String code = (String) request.getSession().getAttribute("code");
+        String code = (String) request.getSession().getAttribute("vCode");
 
-        return null;
+        if(!codetext.equalsIgnoreCase(code)){
+            return "FAIL";
+        }
+        User user=new User();
+        user.setU_email(email);
+        user.setU_name(name);
+        user.setU_passwd(password);
+        try {
+            userService.addUserInfo(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "FAIL";
+        }
+        return "SUCCESS";
+    }
+
+    @RequestMapping(value = "/registerJsp")
+    public String registerJsp(){
+        return "/Register";
+    }
+
+    /**
+     * 生成验证码
+     * @param request
+     * @param response
+     * @throws IOException
+     */
+    @RequestMapping(value="/VerifyCode")
+    public void mm(HttpServletRequest request ,HttpServletResponse response) {
+        VerifyCode vc = new VerifyCode();
+        //获取一次性验证码图片
+        BufferedImage image = vc.getImage();
+        // 该方法必须在getImage()方法之后来调用
+        //System.out.println(vc.getText());//获取图片上的文本
+        try {
+            //把图片写到指定流中
+            VerifyCode.output(image, response.getOutputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // 把文本保存到session中，为LoginServlet验证做准备
+        request.getSession().setAttribute("vCode", vc.getText());
     }
 
     /***
@@ -110,7 +186,7 @@ public class LoginController {
         request.getSession().setAttribute("dog", dogList);
         request.getSession().setAttribute("cat", catList);
         System.out.println("end LoginController.loadIndexJsp model is model");
-        return "index";
+        return "/index";
     }
 
     /***

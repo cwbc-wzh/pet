@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lq.mapper.OrderItemMapper">
+    <insert id="insertOrderInfo" parameterType="Order">
+              INSERT INTO P_ORDER(o_id, p_kid, p_name, u_name, u_phone, o_address, o_price, o_number, o_datetime, o_status, realname)
+              VALUES (#{o_id},#{p_kid},#{p_name},#{u_name},#{u_phone},#{o_address},#{o_price},#{o_number},sysdate(),#{o_status},#{realname})
+    </insert>
+    <!-- 结果集映射对象-->
+    <resultMap id="orderItemMap" type="orderItem">
+        <id property="o_id" column="o_id"/>
+        <collection property="orders" ofType="order" javaType="ArrayList">
+            <result property="o_id" column="o_id"/>
+            <result property="p_kid" column="p_kid"/>
+            <result property="p_name" column="p_name"/>
+            <result property="u_phone" column="u_phone"/>
+            <result property="o_address" column="o_address"/>
+            <result property="o_price" column="o_price"/>
+            <result property="o_number" column="o_number"/>
+            <result property="o_datetime" column="o_datetime"/>
+            <result property="o_status" column="o_status"/>
+            <result property="u_phone" column="u_phone"/>
+            <result property="u_name" column="u_name"/>
+            <result property="realname" column="realname"/>
+            <result property="imagePath" column="p_path"/>
+        </collection>
+    </resultMap>
+
+
+    <!--分页查询订单信息-->
+    <select id="queryOrderListByUserName" resultMap="orderItemMap">
+        SELECT * FROM p_order o ,products p where u_name=#{u_name} and o.p_kid=p.p_kid
+        order by o.o_datetime desc
+    </select>
+
+    <!--分页查询订单信息-->
+    <select id="queryOrderCountByUserName" parameterType="string" resultType="int">
+        SELECT a.count FROM (SELECT COUNT(*) as count FROM p_order where u_name=#{u_name}) a;
+    </select>
+
+    <!--根据订单id查询商品-->
+    <select id="queryOrderItemByOId" resultMap="orderItemMap">
+        SELECT * FROM p_order o ,products p where o.o_id=#{o_id} and o.p_kid=p.p_kid
+    </select>
+    <!--修改订单状态-->
+    <update id="updateOrderStatus">
+        UPDATE p_order SET o_status=#{status} WHERE o_id=#{o_id}
+    </update>
+
+
+
+</mapper>

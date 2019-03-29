@@ -1,82 +1,104 @@
-<%@ page language="java" contentType="text/html; charset=gbk"
-         pageEncoding="gbk"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+         pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=gbk">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Insert title here</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
-    <meta name="copyright" content="" />
+    <meta name="copyright" content=""/>
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/lunbo.js"></script>
     <script src="js/jquery-1.8.2.min.js"></script>
     <script src="js/common.js"></script>
 
-    <link href="css/alasijia.css" rel="stylesheet" type="text/css" />
+    <link href="css/alasijia.css" rel="stylesheet" type="text/css"/>
     <script src="js/slider.js" type="text/javascript"></script>
-    <!--<script type="text/javascript">
-    $(document).ready(function() {
-    $('#slider').slider({ speed: 500 });
-    });
-    </script>-->
     <script type="text/javascript">
-        $(document).ready(function(){
+        $(document).ready(function () {
             var showproduct = {
-                "boxid":"showbox",
-                "sumid":"showsum",
-                "boxw":400,//¿í¶È,¸Ã°æ±¾ÖĞÇë°Ñ¿í¸ßÌîĞ´³ÉÒ»Ñù
-                "boxh":400,//¸ß¶È,¸Ã°æ±¾ÖĞÇë°Ñ¿í¸ßÌîĞ´³ÉÒ»Ñù
-                "sumw":60,//ÁĞ±íÃ¿¸ö¿í¶È,¸Ã°æ±¾ÖĞÇë°Ñ¿í¸ßÌîĞ´³ÉÒ»Ñù
-                "sumh":60,//ÁĞ±íÃ¿¸ö¸ß¶È,¸Ã°æ±¾ÖĞÇë°Ñ¿í¸ßÌîĞ´³ÉÒ»Ñù
-                "sumi":7,//ÁĞ±í¼ä¸ô
-                "sums":5,//ÁĞ±íÏÔÊ¾¸öÊı
-                "sumsel":"sel",
-                "sumborder":1,//ÁĞ±í±ß¿ò£¬Ã»ÓĞ±ß¿òÌîĞ´0£¬±ß¿òÔÚcssÖĞĞŞ¸Ä
-                "lastid":"showlast",
-                "nextid":"shownext"
-            };//²ÎÊı¶¨Òå
-            $.ljsGlasses.pcGlasses(showproduct);//·½·¨µ÷ÓÃ£¬Îñ±ØÔÚ¼ÓÔØÍêºóÖ´ĞĞ
+                "boxid": "showbox",
+                "sumid": "showsum",
+                "boxw": 400,//å®½åº¦,è¯¥ç‰ˆæœ¬ä¸­è¯·æŠŠå®½é«˜å¡«å†™æˆä¸€æ ·
+                "boxh": 400,//é«˜åº¦,è¯¥ç‰ˆæœ¬ä¸­è¯·æŠŠå®½é«˜å¡«å†™æˆä¸€æ ·
+                "sumw": 60,//åˆ—è¡¨æ¯ä¸ªå®½åº¦,è¯¥ç‰ˆæœ¬ä¸­è¯·æŠŠå®½é«˜å¡«å†™æˆä¸€æ ·
+                "sumh": 60,//åˆ—è¡¨æ¯ä¸ªé«˜åº¦,è¯¥ç‰ˆæœ¬ä¸­è¯·æŠŠå®½é«˜å¡«å†™æˆä¸€æ ·
+                "sumi": 7,//åˆ—è¡¨é—´éš”
+                "sums": 5,//åˆ—è¡¨æ˜¾ç¤ºä¸ªæ•°
+                "sumsel": "sel",
+                "sumborder": 1,//åˆ—è¡¨è¾¹æ¡†ï¼Œæ²¡æœ‰è¾¹æ¡†å¡«å†™0ï¼Œè¾¹æ¡†åœ¨cssä¸­ä¿®æ”¹
+                "lastid": "showlast",
+                "nextid": "shownext"
+            };//å‚æ•°å®šä¹‰
+            $.ljsGlasses.pcGlasses(showproduct);//æ–¹æ³•è°ƒç”¨ï¼ŒåŠ¡å¿…åœ¨åŠ è½½å®Œåæ‰§è¡Œ
         });
-        $(document).ready(function() {
-            $('#slider').slider({ speed: 500 });
+        $(document).ready(function () {
+            $('#slider').slider({speed: 500});
         });
-        function buyCart(){
-            //»ñÈ¡ÉÌÆ·µÄid
-            var p_kid=$('#p_kid').val();
-            var quantity=$('#quantity').val();
+
+        function buyCart() {
+            //è·å–å•†å“çš„id
+            var p_kid = $('#p_kid').val();
+            var quantity = $('#quantity').val();
             $.ajax({
-                type:"post",
-                dataType:"text",
-                url:"user/addShopCart.do",
-                data:{
-                    "p_kid":p_kid,
-                    "quantity":quantity
+                type: "post",
+                dataType: "text",
+                url: "${pageContext.request.contextPath}/user/addShopCart.do",
+                data: {
+                    "p_kid": p_kid,
+                    "quantity": quantity
                 },
-                async:true,
+                async: true,
                 contentType: 'application/x-www-form-urlencoded; charset=utf-8',
-                success:function (data) {
-                    if(data=="SUCCESS"){
-                        document.form1.action="showitem.do";
+                success: function (data) {
+                    if (data == "SUCCESS") {
+                        document.form1.action = "${pageContext.request.contextPath}/user/showitem.do";
                         document.form1.submit();
                     }
                     else {
-                        alert("ÇëµÇÂ¼ºó£¬ÔÙ¹ºÂò!")
-                        window.location.href="userlogin.jsp";
+                        alert("è¯·ç™»å½•åï¼Œå†è´­ä¹°!")
+                        window.location.href = "${pageContext.request.contextPath}/userlogin.jsp";
                     }
                 },
-                error:function (data) {
-                    alert("·¢ÉúÎ´Öª´íÎó£¬ÇëµÇÂ¼Ö®ºóÔÙÊÔ")
-                    window.location.href="userlogin.jsp";
+                error: function (data) {
+                    alert("å‘ç”ŸæœªçŸ¥é”™è¯¯ï¼Œè¯·ç™»å½•ä¹‹åå†è¯•")
+                    window.location.href = "${pageContext.request.contextPath}/userlogin.jsp";
                 }
             });
-            // document.form1.action="showitem.do";//µØÖ·ĞÅÏ¢Ò³Ãæ
-            // document.form1.submit();
+
         }
-        function addCart(){
-            document.form1.action="addCart";
-            document.form1.submit();
+
+        function addCart() {
+            //è·å–å•†å“çš„id
+            var p_kid = $('#p_kid').val();
+            var quantity = $('#quantity').val();
+            $.ajax({
+                type: "post",
+                dataType: "text",
+                url: "${pageContext.request.contextPath}/user/addShopCart.do",
+                data: {
+                    "p_kid": p_kid,
+                    "quantity": quantity
+                },
+                async: true,
+                contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+                success: function (data) {
+                    if (data == "SUCCESS") {
+                        alert("å·²æˆåŠŸæ·»åŠ åˆ°è´­ç‰©è½¦ä¸­");
+                    }
+                    else {
+                        alert("è¯·ç™»å½•åï¼Œå†è´­ä¹°!")
+                        window.location.href = "${pageContext.request.contextPath}/userlogin.jsp";
+                    }
+                },
+                error: function (data) {
+                    alert("å‘ç”ŸæœªçŸ¥é”™è¯¯ï¼Œè¯·ç™»å½•ä¹‹åå†è¯•")
+                    window.location.href = "${pageContext.request.contextPath}/userlogin.jsp";
+                }
+            });
+
         }
     </script>
 </head>
@@ -84,15 +106,16 @@
 <body>
 <div class="header">
     <div class="head-rgh">
-        <span><a href="Pet.do">Ê×Ò³&nbsp;&nbsp;&nbsp;</a></span>
-        <span><a href="logOut.do">×¢Ïú</a></span>
+        <span><a href="${pageContext.request.contextPath}/Pet.do">é¦–é¡µ&nbsp;&nbsp;&nbsp;</a></span>
+        <span><a href="${pageContext.request.contextPath}/logOut.do">æ³¨é”€</a></span>
     </div>
     <div class="head-lef">
         <c:choose>
             <c:when test="${sessionScope.username==null}">
-                <span class="header"><a href="userlogin.jsp">µÇÂ¼&nbsp;&nbsp;&nbsp;</a></span>
-                <span><a href="Register.jsp">×¢²á</a></span>
-                <span class="header"><a href="Rootlogin.jsp">ºóÌ¨µÇÂ¼&nbsp;&nbsp;&nbsp;</a></span>
+                <span class="header"><a href="${pageContext.request.contextPath}/userlogin.jsp">ç™»å½•&nbsp;&nbsp;&nbsp;</a></span>
+                <span><a href="${pageContext.request.contextPath}/Register.jsp">æ³¨å†Œ</a></span>
+                <span class="header"><a
+                        href="${pageContext.request.contextPath}/Rootlogin.jsp">åå°ç™»å½•&nbsp;&nbsp;&nbsp;</a></span>
             </c:when>
             <c:otherwise>
                 <span>Welcome!&nbsp;&nbsp;&nbsp;${sessionScope.username }</span>
@@ -100,69 +123,73 @@
         </c:choose>
     </div>
     <div class="header-Con"></div>
-    <div class="word">ÕıÆ·¡¤ÓÅÑ¡¡¤ÓÃĞÄ</div>
+    <div class="word">æ­£å“Â·ä¼˜é€‰Â·ç”¨å¿ƒ</div>
 </div>
 <div class="search">
-    <div class="inp"> <input type=text  placeholder="Search"></div>
-    <div class="sousuo"><input type="submit" class="searchbutton" value="ËÑË÷"></div>
+    <div class="inp"><input type=text placeholder="Search"></div>
+    <div class="sousuo"><input type="submit" class="searchbutton" value="æœç´¢"></div>
 </div>
 <div class="gouwuche">
-    <div><img src="images/gouwuche.jpg" class="gowuim"></div>
-    <div class="gowwuword"><a href="queryCart">¹ºÎï³µ</a></div>
-    <div ><img src="images/j.jpg" class="jiangim"></div>
-    <div class="jiangword">Æ·ÖÊ</div>
+    <div><img src="${pageContext.request.contextPath}/images/gouwuche.jpg" class="gowuim"></div>
+    <div class="gowwuword"><a href="${pageContext.request.contextPath}/user/showitem.do">è´­ç‰©è½¦</a></div>
+    <div><img src="${pageContext.request.contextPath}/images/j.jpg" class="jiangim"></div>
+    <div class="jiangword">å“è´¨</div>
 </div>
 
 <div class="nave">
     <ul id="nav">
-        <li id="show"><a href="Pet">³èÎïÉÌÆ·</a>
+        <li id="show"><a href="${pageContext.request.contextPath}/Pet.do">å® ç‰©å•†å“</a>
             <ul>
-                <li><a href="wuse.jsp">³èÎïÎİÉá</a></li>
-                <li><a href="my.jsp">Ä¥ÑÀÍæ¾ß</a></li>
-                <li><a href="wan.jsp">³èÎïÍë</a></li>
-            </ul></li>
-        <li><a href="shopping1.jsp">ÔÚÏßÔ¤Ô¼</a>
-            <ul>
-                <li><a href="#">ÃÀÈİÔ¤Ô¼</a></li>
-                <li><a href="#">ÕïÁÆÔ¤Ô¼</a></li>
-            </ul></li>
-        <li><a href="test.jsp">¶©µ¥</a>
+                <li><a href="${pageContext.request.contextPath}/commodityJsp.do?p_kind=3">å® ç‰©å±‹èˆ</a></li>
+                <li><a href="${pageContext.request.contextPath}/commodityJsp.do?p_kind=4">ç£¨ç‰™ç©å…·</a></li>
+                <li><a href="${pageContext.request.contextPath}/commodityJsp.do?p_kind=5">å® ç‰©ç¢—</a></li>
+            </ul>
         </li>
-        <li><a href="">ÓÃ»§ĞÄÉù</a>
+        <li><a href="shopping1.jsp">åœ¨çº¿é¢„çº¦</a>
             <ul>
-                <li><a href="#">Âô¼ÒĞã</a></li>
-                <li><a href="#">ÁôÑÔ°å</a></li>
-            </ul></li>
-        <li><a href="">¹ØÓÚÎÒÃÇ</a>
+                <li><a href="#">ç¾å®¹é¢„çº¦</a></li>
+                <li><a href="#">è¯Šç–—é¢„çº¦</a></li>
+            </ul>
+        </li>
+        <li><a href="${pageContext.request.contextPath }/user/loadOrderListJsp.do">è®¢å•</a>
+        </li>
+        <li><a href="">ç”¨æˆ·å¿ƒå£°</a>
             <ul>
-                <li><a href="#">ÉÌµê¼ò½é</a></li>
-            </ul></li>
+                <li><a href="#">å–å®¶ç§€</a></li>
+                <li><a href="#">ç•™è¨€æ¿</a></li>
+            </ul>
+        </li>
+        <li><a href="">å…³äºæˆ‘ä»¬</a>
+            <ul>
+                <li><a href="#">å•†åº—ç®€ä»‹</a></li>
+            </ul>
+        </li>
 
     </ul>
 </div>
 
 <div class="shangp">
-    <span ><img src="images/dao.jpg" class="dao"></span>
-    <span class="tiao"><a href="">ÌôÑ¡°®³è</a></span>
+    <span><img src="${pageContext.request.contextPath}/images/dao.jpg" class="dao"></span>
+    <span class="tiao"><a href="${pageContext.request.contextPath}/Pet.do">æŒ‘é€‰çˆ±å® </a></span>
 </div>
 
 <div class="di">
-    <span class="d1"> µ±Ç°ÉÌÆ·Îª:</span>
+    <span class="d1">å½“å‰å® ç‰©åç§°:</span>
     <span class="d2" id="petName">${products.p_name}</span>
 </div>
 
 <div style="width:600px; margin:0 auto;">
-    <!--<p>»¶Ó­Ê¹ÓÃ³£ÓÃÉÌÆ·ÏêÇéÒ³ÉÌÆ··Å´ó¾µĞ§¹û£¬¼æÈİIE6¼°ÒÔÉÏ°æ±¾</p>
-    <p style="padding-bottom:50px;">Í¼Æ¬±êÇ©ÉÏÇëÎñ±Ø×¢ÒâwidthºÍheightµÄÖµ£¬ÕâÊÇ±ØÒªµÄÖµ£¬Í¼Æ¬ËæÒâĞÎ×´£¬ËæÒâ´óĞ¡£¬µ«±ØĞëÌîĞ´¸ÃÁ½¸öÖµ£¬Í¼Æ¬¸öÊı´óÓÚ1¾ÍĞĞ£¬ÊıÁ¿²»¹Ì¶¨</p>-->
-    <!--Ò³Ãæ±ØÒª´úÂë,img±êÇ©ÉÏÇëÎñ±Ø´øÉÏÍ¼Æ¬ÕæÊµ³ß´çpx-->
+    <!--<p>æ¬¢è¿ä½¿ç”¨å¸¸ç”¨å•†å“è¯¦æƒ…é¡µå•†å“æ”¾å¤§é•œæ•ˆæœï¼Œå…¼å®¹IE6åŠä»¥ä¸Šç‰ˆæœ¬</p>
+    <p style="padding-bottom:50px;">å›¾ç‰‡æ ‡ç­¾ä¸Šè¯·åŠ¡å¿…æ³¨æ„widthå’Œheightçš„å€¼ï¼Œè¿™æ˜¯å¿…è¦çš„å€¼ï¼Œå›¾ç‰‡éšæ„å½¢çŠ¶ï¼Œéšæ„å¤§å°ï¼Œä½†å¿…é¡»å¡«å†™è¯¥ä¸¤ä¸ªå€¼ï¼Œå›¾ç‰‡ä¸ªæ•°å¤§äº1å°±è¡Œï¼Œæ•°é‡ä¸å›ºå®š</p>-->
+    <!--é¡µé¢å¿…è¦ä»£ç ,imgæ ‡ç­¾ä¸Šè¯·åŠ¡å¿…å¸¦ä¸Šå›¾ç‰‡çœŸå®å°ºå¯¸px-->
     <div id="showbox">
 
         <c:forEach items="${products.imagesList}" var="imager">
-            <img src="${imager.image_path}" width="300" height="300" />
+            <img src="${pageContext.request.contextPath}//${imager.image_path}" width="300" height="300"/>
         </c:forEach>
 
-    </div><!--Õ¹Ê¾Í¼Æ¬ºĞ×Ó-->
-    <div id="showsum"></div><!--Õ¹Ê¾Í¼Æ¬Àï±ß-->
+    </div><!--å±•ç¤ºå›¾ç‰‡ç›’å­-->
+    <div id="showsum"></div><!--å±•ç¤ºå›¾ç‰‡é‡Œè¾¹-->
     <p class="showpage">
         <a href="javascript:void(0);" id="showlast"> < </a>
         <a href="javascript:void(0);" id="shownext"> > </a>
@@ -170,99 +197,109 @@
 </div>
 <div class="miaoshu">
     <div class="m1">${products.p_title}</div>
-    <div class="m2">¡¾»¶Ó­µ½µêÑ¡¹º¡¿</div>
+    <div class="m2">ã€æ¬¢è¿åˆ°åº—é€‰è´­ã€‘</div>
     <div class="m3">
-        <span class="m3-1">³èÎïÖ®¼Ò¼Û¸ñ£º</span>
+        <span class="m3-1">å® ç‰©ä¹‹å®¶ä»·æ ¼ï¼š</span>
         <!-- <img src="images/doller.jpg">-->
-        <span class="m3-2">£¤${products.p_price}Ôª </span>
-        <div class="m31">ÊĞ³¡¼Û£º£¤${products.market_price}</div>
+        <span class="m3-2">ï¿¥${products.p_price}å…ƒ </span>
+        <div class="m31">å¸‚åœºä»·ï¼šï¿¥${products.market_price}</div>
     </div>
 
-    <!--¼ÓÒ»¸öform±íµ¥-->
+    <!--åŠ ä¸€ä¸ªformè¡¨å•-->
     <form name="form1" action="" method="get">
-        <div class="time">ÄêÁä£º
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <select id="petSize">
-                <option value="1">3¸öÔÂÒÔÏÂ</option>
-                <option value="2">Èı¸öÔÂ¼°ÒÔÉÏ</option>
-                <option value="3">Áù¸öÔÂÒÔÉÏÒ»ÄêÒÔÏÂ</option>
-                <option value="4">Ò»ÄêÒÔÉÏ</option>
-            </select>
-        </div>
 
-        <div class="m4">¹ºÂòÊıÁ¿: <input type="button" onclick="numDec()" value="-"  id="sus" >
-            <input type="text" id="quantity" placeholder="1" name="count"/>
+        <c:if test="${products.p_kind==1||products.p_kind==2}">
+            <div class="time">å¹´é¾„ï¼š
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                    ${products.p_age}
+            </div>
+        </c:if>
+        <c:if test="${products.p_kind!=1&&products.p_kind!=2}">
+            <div class="time">é¢œè‰²ï¼š
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <select>
+                    <option value="1">æ©™è‰²</option>
+                    <option value="2">é»„è‰²</option>
+                    <option value="3">ç»¿è‰²</option>
+                    <option value="4">è“è‰²</option>
+                </select>
+            </div>
+        </c:if>
+
+        <div class="m4">è´­ä¹°æ•°é‡: <input type="button" onclick="numDec()" value="-" id="sus">
+            <input type="text" id="quantity" placeholder="1" value="1" name="count"/>
             <input type="button" onclick="numAdd()" value="+" id="add">
         </div>
-        <div class="sdsd">½ğ¶î×Ü¼Æ: <span id="totalPrice">0</span></div>
-        <input type="hidden" value="${products.p_price}" id="price" />
+        <div class="sdsd">é‡‘é¢æ€»è®¡: <span id="totalPrice">${products.p_price}</span></div>
+        <input type="hidden" value="${products.p_price}" id="price"/>
         <input type="hidden" value="${products.p_kid}" id="p_kid" name="p_kid">
         <div class="buy">
             <div class="m6">
-                <a href="javascript:buyCart();"><input type="button" value="Á¢¼´¹ºÂò"></a>
+                <a href="javascript:buyCart();"><input type="button" value="ç«‹å³è´­ä¹°"></a>
             </div>
             <div class="m7">
-                <a href="javascript:addCart();"><img src="images/gouwuche.jpg">
-                    <input type="button" value="¼ÓÈë¹ºÎï³µ">
+                <a href="javascript:addCart();"><img src="${pageContext.request.contextPath}/images/gouwuche.jpg">
+                    <input type="button" value="åŠ å…¥è´­ç‰©è½¦">
                 </a>
             </div>
         </div>
     </form>
-    <div class="m8">¡îÊÕ²ØÉÌÆ·</div>
+    <div class="m8">â˜†æ”¶è—å•†å“</div>
 </div>
 
 
-<div class="tuijian"><span class="tword">ÈÈÏúÍÆ¼ö</span></div>
+<div class="tuijian"><span class="tword">çƒ­é”€æ¨è</span></div>
 <div id="slider">
     <div class="spic">
-        <img src="images/buou1.jpg" />
-        <a href="boou.jsp">²¼Å¼Ã¨</a>
+        <img src="${pageContext.request.contextPath}/images/buou1.jpg"/>
+        <a href="boou.jsp">å¸ƒå¶çŒ«</a>
     </div>
     <div class="spic">
-        <img src="images/bosi.jpg" />
-        <a href="#">²¨Ë¹Ã¨</a>
+        <img src="${pageContext.request.contextPath}/images/bosi.jpg"/>
+        <a href="#">æ³¢æ–¯çŒ«</a>
     </div>
     <div class="spic">
-        <img src="images/eluo.jpg" />
-        <a href="lm.jsp">¶íÂŞË¹À¶Ã¨</a>
+        <img src="${pageContext.request.contextPath}/images/eluo.jpg"/>
+        <a href="lm.jsp">ä¿„ç½—æ–¯è“çŒ«</a>
     </div>
     <div class="spic">
-        <img src="images/5.jpg" />
-        <a href="jm.jsp">½ğÃ«</a>
+        <img src="${pageContext.request.contextPath}/images/5.jpg"/>
+        <a href="jm.jsp">é‡‘æ¯›</a>
     </div>
     <div class="spic">
-        <img src="images/buou2.jpg" />
-        <a href="buou1.jsp">²¼Å¼Ã¨</a>
+        <img src="${pageContext.request.contextPath}/images/buou2.jpg"/>
+        <a href="buou1.jsp">å¸ƒå¶çŒ«</a>
     </div>
     <div class="spic">
-        <img src="images/photos/img02.jpg" />
-        <a href="alasijia.jsp">°¢À­Ë¹¼Ó</a>
+        <img src="${pageContext.request.contextPath}/images/photos/img02.jpg"/>
+        <a href="alasijia.jsp">é˜¿æ‹‰æ–¯åŠ </a>
     </div>
 </div>
 <div class="footer">
-    <div class="wen">ÏëÁË½â¸ü¶àĞÅÏ¢»¶Ó­ÖÂµç</div>
+    <div class="wen">æƒ³äº†è§£æ›´å¤šä¿¡æ¯æ¬¢è¿è‡´ç”µ</div>
 
     <div class="sos">
         <div class="sinp"><input type="text"></div>
-        <div class="sod">µç»°£º8888888</div>
+        <div class="sod">ç”µè¯ï¼š8888888</div>
     </div>
 
-    <div class="guanjian">ÎÂË³Ğ¡Ã¨&nbsp;&nbsp;&nbsp;&nbsp;¸ãĞ¦¹·¹·&nbsp;&nbsp;&nbsp;&nbsp;»îÆÃµÄÃ¨&nbsp;&nbsp;&nbsp;&nbsp;
-        ´ÏÃ÷µÄ¹·</div>
+    <div class="guanjian">æ¸©é¡ºå°çŒ«&nbsp;&nbsp;&nbsp;&nbsp;æç¬‘ç‹—ç‹—&nbsp;&nbsp;&nbsp;&nbsp;æ´»æ³¼çš„çŒ«&nbsp;&nbsp;&nbsp;&nbsp;
+        èªæ˜çš„ç‹—
+    </div>
 
 
     <div class="santu">
         <div class="santu1">
-            <div class=""><img src="images/zhen.jpg" ></div>
-            <div>ÕıÆ·±£ÕÏ</div>
+            <div class=""><img src="${pageContext.request.contextPath}/images/zhen.jpg"></div>
+            <div>æ­£å“ä¿éšœ</div>
         </div>
         <div class="santu2">
-            <div class=""><img src="images/zhen2.jpg" ></div>
-            <div>30ÌìÎŞÀíÓÉb°üÍË»»</div>
+            <div class=""><img src="${pageContext.request.contextPath}/images/zhen2.jpg"></div>
+            <div>30å¤©æ— ç†ç”±båŒ…é€€æ¢</div>
         </div>
         <div class="santu3">
-            <div class=""><img src="images/zhen3.jpg" ></div>
-            <div>48Ğ¡Ê±ÉÁµç·¢»õ</div>
+            <div class=""><img src="${pageContext.request.contextPath}/images/zhen3.jpg"></div>
+            <div>48å°æ—¶é—ªç”µå‘è´§</div>
         </div>
     </div>
 
@@ -270,52 +307,50 @@
     <br>
 </div>
 <script type="text/javascript">
-    /*»òÕß²»ÓÃjquery*/
-    /*ÉÌÆ·ÊıÁ¿¿òÊäÈë*/
-    function keyup(){
+    /*æˆ–è€…ä¸ç”¨jquery*/
+    /*å•†å“æ•°é‡æ¡†è¾“å…¥*/
+    function keyup() {
         var quantity = document.getElementById("quantity").value;
-        if(isNaN(quantity) ||  parseInt(quantity)!=quantity || parseInt(quantity)<1){
+        if (isNaN(quantity) || parseInt(quantity) != quantity || parseInt(quantity) < 1) {
             quantity = 1;
             return;
         }
-        if(quantity>=10){
-            document.getElementById("quantity").value=quantity.substring(0,quantity.length-1);
-            alert("ÉÌÆ·ÊıÁ¿²»ÄÜ´óÓÚ10");
+        if (quantity >= 10) {
+            document.getElementById("quantity").value = quantity.substring(0, quantity.length - 1);
+            alert("å•†å“æ•°é‡ä¸èƒ½å¤§äº10");
         }
     }
 
-    /*ÉÌÆ·ÊıÁ¿+1*/
-    function numAdd(){
+    /*å•†å“æ•°é‡+1*/
+    function numAdd() {
         var quantity = document.getElementById("quantity").value;
-        var num_add = parseInt(quantity)+1;
-        var price=document.getElementById("price").value;
-        if(quantity==""){
+        var num_add = parseInt(quantity) + 1;
+        var price = document.getElementById("price").value;
+        if (quantity == "") {
             num_add = 1;
         }
-        if(num_add>=10){
-            document.getElementById("quantity").value=num_add-1;
-            alert("ÉÌÆ·ÊıÁ¿²»ÄÜ´óÓÚ10");
-        }else{
-            document.getElementById("quantity").value=num_add;
-            var Num=price*num_add;
-            document.getElementById("totalPrice").innerHTML=Num.toFixed(2);
+        if (num_add >= 10) {
+            document.getElementById("quantity").value = num_add - 1;
+            alert("å•†å“æ•°é‡ä¸èƒ½å¤§äº10");
+        } else {
+            document.getElementById("quantity").value = num_add;
+            var Num = price * num_add;
+            document.getElementById("totalPrice").innerHTML = Num.toFixed(2);
         }
     }
-    /*ÉÌÆ·ÊıÁ¿-1*/
-    function numDec(){
+
+    /*å•†å“æ•°é‡-1*/
+    function numDec() {
         var quantity = document.getElementById("quantity").value;
-        var price=document.getElementById("price").value;
-        var num_dec = parseInt(quantity)-1;
-        if(num_dec>0){
-            document.getElementById("quantity").value=num_dec;
-            var Num=price*num_dec;
-            document.getElementById("totalPrice").innerHTML=Num.toFixed(2);
+        var price = document.getElementById("price").value;
+        var num_dec = parseInt(quantity) - 1;
+        if (num_dec > 0) {
+            document.getElementById("quantity").value = num_dec;
+            var Num = price * num_dec;
+            document.getElementById("totalPrice").innerHTML = Num.toFixed(2);
         }
     }
-    /*function show()
-    {
-        document.getElementById("totalPrice").innerHTML=3.25*3;
-    } */
+
 </script>
 </body>
 </html>

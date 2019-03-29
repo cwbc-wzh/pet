@@ -24,4 +24,6 @@ public interface UserMapper {
 
     User finUserByUserName(@Param("userName") String userName);
 
+    int insertUserInfo(User user);
+
 }

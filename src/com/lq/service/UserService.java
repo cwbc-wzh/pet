@@ -25,4 +25,11 @@ public interface UserService {
      * @return 用户实体
      */
     User queryUserInfo(String userName);
+
+    /**
+     * 新增用户
+     * @param user
+     * @return
+     */
+    void addUserInfo(User user);
 }

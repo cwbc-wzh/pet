@@ -19,10 +19,20 @@ public class CartItem {
 
     /**用户id*/
     public String u_id;
+
+    /**物品*/
+    public Products products;
     
     /** 创建时间*/
     public String createDate;
 
+    public Products getProducts() {
+        return products;
+    }
+
+    public void setProducts(Products products) {
+        this.products = products;
+    }
 
     public String getCartItemId() {
         return cartItemId;

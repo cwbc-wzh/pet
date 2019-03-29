@@ -4,9 +4,13 @@
     <select id="findUserByUserPass" parameterType="string" resultType="user">
       SELECT u_id,u_name,u_passwd,u_email from USER where u_name=#{username} AND u_passwd=#{password}
     </select>
-
+    <!--查询用户信息-->
     <select id="finUserByUserName" parameterType="string" resultType="User">
         SELECT u_id,u_name,u_passwd FROM USER where u_name=#{userName}
 
     </select>
+    <!--新增用户-->
+    <insert id="insertUserInfo" parameterType="user">
+        INSERT INTO user(u_id,u_name,u_passwd,u_email) VALUES (#{u_id},#{u_name},#{u_passwd},#{u_email})
+    </insert>
 </mapper>

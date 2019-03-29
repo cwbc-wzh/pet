@@ -5,18 +5,42 @@
     <select id="queryCartItemInfoByKid" parameterType="string" resultType="CartItem">
             SELECT cartItemId,quantity,p_kid,u_id,createDate FROM CARTITEM WHERE p_kid=#{p_kid} and u_id=#{uId}
     </select>
-
-    <update id="updateCartItemInfo" >
+    <!--修改购物车信息,根据物品id和用户id-->
+    <update id="updateCartItemInfo">
         UPDATE CARTITEM SET quantity=#{quantity} where  p_kid=#{p_kid} and u_id=#{uId}
     </update>
-
-
-    <insert id="insertCartItemInfo"  parameterType="CartItem">
+    <!--插入购物车信息-->
+    <insert id="insertCartItemInfo" parameterType="CartItem">
         INSERT INTO CARTITEM(cartItemId,quantity,p_kid,u_id,createDate) VALUES (#{cartItemId},#{quantity},#{p_kid},#{u_id},sysdate())
     </insert>
-
+    <!--查询该用户所有的购物车信息-->
     <select id="queryCartItemsByUId" parameterType="string" resultType="CartItem">
           SELECT cartItemId,quantity,p_kid,u_id,createDate from CARTITEM WHERE u_id=#{uId}
     </select>
+    <!--根据购物车id来修改物品数量-->
+    <update id="updateCartItemByCartInfo">
+          UPDATE CARTITEM SET quantity=#{quantity} where cartItemId=#{cartItemId}
+    </update>
+    <!--根据购物车id来查看购物车信息-->
+    <select id="queryCartItemByCartItemId" resultType="CartItem">
+          SELECT cartItemId,quantity,p_kid,u_id,createDate FROM CARTITEM WHERE cartItemId=#{cartItemId}
+    </select>
+    <!--批量删除根据购物车id来删除购物车-->
+    <delete id="batchDeleteCartItem" parameterType="string">
+        DELETE FROM CARTITEM WHERE cartItemId IN
+        <foreach collection="cartItemIds" item="cartItemId" open="(" separator="," close=")">
+            #{cartItemId}
+        </foreach>
+    </delete>
+
+    <select id="batchQueryCartItemByID" parameterType="string" resultType="CartItem">
+        SELECT cartItemId,quantity,p_kid,u_id,createDate FROM CARTITEM WHERE cartItemId IN
+        <foreach collection="cartItemIds" item="cartItemId" open="(" separator="," close=")">
+            #{cartItemId}
+        </foreach>
+    </select>
+
+
+
 
 </mapper>

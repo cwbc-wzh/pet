@@ -1,98 +1,152 @@
-<%@ page language="java" contentType="text/html; charset=gbk"
-         pageEncoding="gbk" %>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+         pageEncoding="utf-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=gbk">
-    <title>×¢²á</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>æ³¨å†Œ</title>
     <link rel="stylesheet" href="css/zhuce.css"></link>
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript">
         function check() {
             if (document.getElementById("t1-2").value == "") {
-                alert("Ñ§ºÅÊäÈë²»ÄÜÎª¿Õ£¡");
+                alert("å­¦å·è¾“å…¥ä¸èƒ½ä¸ºç©ºï¼");
                 document.getElementById("t1-2").focus();
-                return false;
+                return ;
             }
             else if (document.getElementById("t2-2").value == "") {
-                alert("ÃÜÂëÊäÈë²»ÄÜÎª¿Õ£¡");
+                alert("å¯†ç è¾“å…¥ä¸èƒ½ä¸ºç©ºï¼");
                 document.getElementById("t2-2").focus();
-                return false;
+                return ;
             }
             else if (document.getElementById("t3-2").value !== document.getElementById("t2-2").value) {
-                alert("Á½´ÎÃÜÂëÊäÈë²»Í¬£¡");
+                alert("ä¸¤æ¬¡å¯†ç è¾“å…¥ä¸åŒï¼");
                 document.getElementById("t3-2").focus();
-                return false;
+                return ;
             }
             else if (document.getElementById("t4-2").value == "") {
-                alert("ÓÊÏäÊäÈë²»ÄÜÎª¿Õ£¡");
+                alert("é‚®ç®±è¾“å…¥ä¸èƒ½ä¸ºç©ºï¼");
                 document.getElementById("t4-2").focus();
-                return false;
+                return ;
             }
             else if (document.getElementById("t5-2").value == "") {
-                alert("ÑéÖ¤ÂëÊäÈë²»ÄÜÎª¿Õ£¡");
+                alert("éªŒè¯ç è¾“å…¥ä¸èƒ½ä¸ºç©ºï¼");
                 document.getElementById("t5-2").focus();
-                return false;
+                return ;
             }
-            return findUser();
-        }
-        function findUser() {
-            var userName=$("#t1-2").val();
+            var userName = $("#t1-2").val();
             $.ajax({
-                    url:"findUser.do",
-                    data:{"userName":userName},
-                    type:post,
-                    datatype:"json",
-                    success:function (result) {
-                        if(result=="1"){
-                            alert("¸ÃÓÃ»§ÃûÒÑ¾­´æÔÚ£¡ÇëÖØĞÂÊäÈëÓÃ»§Ãû");
-                            return false
-                        }
-                        else
-                            return true;
+                url: "${pageContext.request.contextPath}/findUser.do",
+                data: {"userName": userName},
+                type: "post",
+                dataType: "text",
+                contentType: "application/x-www-form-urlencoded; charset=utf-8",
+                success: function (result) {
+                    if (result == "SUCCESS") {
+                        aa();
                     }
-            })
+                    else {
+                        alert("è¯¥ç”¨æˆ·åå·²ç»å­˜åœ¨ï¼è¯·é‡æ–°è¾“å…¥ç”¨æˆ·å");
+                        $('#RegisterForm')[0].reset();
+                        RefreshVerifyCode();
+                        return ;
+                    }
+
+                },
+                error: function (data) {
+                    $('#RegisterForm')[0].reset();
+                    RefreshVerifyCode();
+                    alert("å‘ç”ŸæœªçŸ¥é”™è¯¯ï¼Œè¯·ç™»å½•ä¹‹åå†è¯•")
+                    return ;
+                }
+            });
+
+        }
+
+        function aa() {
+            var username = $("#t1-2").val();
+            var password = $("#t2-2").val();
+            var email = $("#t4-2").val();
+            var codetext = $("#t5-2").val();
+            $.ajax({
+                type: "post",
+                dataType: "text",
+                url: "${pageContext.request.contextPath}/register.do",
+                data: {
+                    "username": username,
+                    "password": password,
+                    "email": email,
+                    "codetext": codetext
+                },
+                async: true,
+                contentType: "application/x-www-form-urlencoded; charset=utf-8",
+                success: function (data) {
+                    alert(data);
+                    if (data == "SUCCESS") {
+                        alert("æ·»åŠ ç”¨æˆ·æˆåŠŸï¼Œè¯·ç»§ç»­æ“ä½œ");
+                      window.location.href="${pageContext.request.contextPath}/userlogin.jsp";
+                        return ;
+                    }
+                    else {
+                        alert("éªŒè¯ç ä¸æ­£ç¡®è¯·é‡æ–°è¾“å…¥");
+                        $('#RegisterForm')[0].reset();
+                        RefreshVerifyCode();
+                        return ;
+                    }
+
+                },
+                error: function (data) {
+                    alert("å‘ç”ŸæœªçŸ¥é”™è¯¯ï¼Œè¯·ç™»å½•ä¹‹åå†è¯•")
+                    $('#RegisterForm')[0].reset();
+                    RefreshVerifyCode();
+                    return ;
+                }
+
+            });
+        }
+
+        function RefreshVerifyCode() {
+            $("#t4-3").attr("src", "${pageContext.request.contextPath}/VerifyCode.do?a=" + new Date().getTime());
         }
     </script>
 
 </head>
 <body>
-<%
-    String code = (String) session.getAttribute("code");
-%>
-<form action="register,do" method="post">
-    <p class="zhucw">ÓÃ»§×¢²á</p>
+
+<form id="RegisterForm" action="" method="post">
+    <p class="zhucw">ç”¨æˆ·æ³¨å†Œ</p>
     <div class="header">
         <div class="header-1"><</div>
         <div class="header-2"></div>
     </div>
     <div class="t1">
-        <span class="t1-1"> ÕËºÅ </span>
-        <span class="t11"><input type="text" id="t1-2" placeholder="ÇëÊäÈëÄúµÄÓÃ»§Ãû " name="username">
+        <span class="t1-1"> è´¦å· </span>
+        <span class="t11"><input type="text" id="t1-2" placeholder="è¯·è¾“å…¥æ‚¨çš„ç”¨æˆ·å " name="username">
    </span></div>
 
     <div class="t2">
-        <span class="t1-1">ÃÜÂë </span> <input type="password" id="t2-2" placeholder="ÃÜÂëÎªÊı×ÖºÍ×ÖÄ¸×éºÏ×î¶à16Î»" name="password">
+        <span class="t1-1">å¯†ç  </span> <input type="password" id="t2-2" placeholder="å¯†ç ä¸ºæ•°å­—å’Œå­—æ¯ç»„åˆæœ€å¤š16ä½" name="password">
     </div>
     <div class="t3">
-        <span class="t1-1">ÇëÔÙ´ÎÈ·ÈÏÃÜÂë </span> <input type="password" id="t3-2" placeholder="">
+        <span class="t1-1">è¯·å†æ¬¡ç¡®è®¤å¯†ç  </span> <input type="password" id="t3-2" placeholder="">
     </div>
     <div class="t4">
-        <span class="t1-1">ÓÊÏä </span> <input type="text" id="t4-2" placeholder="Ö§³ÖÓÊÏä¸ñÊ½...." name="email">
-        <input type="button" id="t4-3" value="<%=code %>">
+        <span class="t1-1">é‚®ç®± </span> <input type="text" id="t4-2" placeholder="æ”¯æŒé‚®ç®±æ ¼å¼...." name="email">
+        <%--<input type="button" id="t4-3" value="<%=code %>">--%>
+        <img id="t4-3" onclick="RefreshVerifyCode()" src="${pageContext.request.contextPath}/VerifyCode.do"/>
     </div>
 
     <div class="t5">
-        <span class="t1-1">ÑéÖ¤Âë</span>
+        <span class="t1-1">éªŒè¯ç </span>
         <input type="text" id="t5-2" name="codetext">
     </div>
 
 
     <div class="tijiao">
-        <input type="submit" value="Ìá½»" class="butt" onclick="return check()">
+        <input type="button" value="æäº¤" onclick="check()">
     </div>
     <div class="lianjie">
-        <a href="userlogin.jsp" class="log-link">ÒÑÓĞÕËºÅ£¬µã´ËµÇÂ¼</a>
+        <a href="userlogin.jsp" class="log-link">å·²æœ‰è´¦å·ï¼Œç‚¹æ­¤ç™»å½•</a>
     </div>
 </form>
 </body>

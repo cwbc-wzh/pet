@@ -167,7 +167,7 @@
   
   
   <br>
-   <div　id="banquan">&copy;南京晓庄学院ZLM版权所有</div>
+   <div id="banquan">&copy;南京晓庄学院ZLM版权所有</div>
 </div>
 
 

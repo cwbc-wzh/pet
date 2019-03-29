@@ -1,130 +1,114 @@
-<%@ page language="java" contentType="text/html; charset=gbk"
-    pageEncoding="gbk"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+         pageEncoding="utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gbk">
-<title>Document</title>
-<link rel="stylesheet" href="css/index.css">
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/xiala.js"></script> 
-<script type="text/javascript" src="js/lunbo.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/index.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/xiala.js"></script>
+    <script type="text/javascript" src="js/lunbo.js"></script>
 </head>
 <body>
- <div class="header">
- <div class="head-rgh">
- <span><a href="Pet.do">Ê×Ò³&nbsp;&nbsp;&nbsp;</a></span>
-   <span><a href="logOut.do">×¢Ïú</a></span>
-   </div>
-   <div class="head-lef">
-       <c:choose>
-           <c:when test="${sessionScope.username==null}">
-               <span class="header"><a href="userlogin.jsp">µÇÂ¼&nbsp;&nbsp;&nbsp;</a></span>
-               <span><a href="Register.jsp">×¢²á</a></span>
-               <span class="header"><a href="Rootlogin.jsp">ºóÌ¨µÇÂ¼&nbsp;&nbsp;&nbsp;</a></span>
-           </c:when>
-           <c:otherwise>
-               <span>Welcome!&nbsp;&nbsp;&nbsp;${sessionScope.username }</span>
-           </c:otherwise>
-       </c:choose>
-   </div>
-     <div class="header-Con"></div>
-    <div class="word">ÕıÆ·¡¤ÓÅÑ¡¡¤ÓÃĞÄ</div>
-   </div>
-   <!--  <div class="search">
-  <div class="inp"> <input type=text  placeholder="Search"></div>
-<div class="sousuo"><input type="submit" class="searchbutton" value="ËÑË÷"></div> 
-   </div>-->
- <div class="gouwuche">
-  <div><img src="images/gouwuche.jpg" class="gowuim"></div>
-  <div class="gowwuword"><a href="queryCart">¹ºÎï³µ</a></div>
-  <div ><img src="images/j.jpg" class="jiangim"></div>
-  <div class="jiangword">Æ·ÖÊ</div>
-  </div>
-  
-  <div class="nave">
-     <ul id="nav">
-       <li id="show"><a href="Pet">³èÎïÉÌÆ·</a>
-           <ul>
-         <li><a href="wuse.jsp">³èÎïÎİÉá</a></li> 
-             <li><a href="my.jsp">Ä¥ÑÀÍæ¾ß</a></li> 
-             <li><a href="wan.jsp">³èÎïÍë</a></li>  
-            </ul></li>
-            <li><a href="shopping1.jsp">ÔÚÏßÔ¤Ô¼</a>
-           <ul>
-         <li><a href="#">ÃÀÈİÔ¤Ô¼</a></li> 
-             <li><a href="#">ÕïÁÆÔ¤Ô¼</a></li> 
-            </ul></li>  
-        <li><a href="test.jsp">¶©µ¥</a>
-      </li>
-           <li><a href="">ÓÃ»§ĞÄÉù</a>
-              <ul>
-         <li><a href="#">Âô¼ÒĞã</a></li> 
-             <li><a href="#">ÁôÑÔ°å</a></li> 
-            </ul></li>
-            <li><a href="">¹ØÓÚÎÒÃÇ</a>
-               <ul>
-         <li><a href="#">ÉÌµê¼ò½é</a></li> 
-            </ul></li>
-           
+<div class="header">
+    <div class="head-rgh">
+        <span><a href="Pet.do">é¦–é¡µ&nbsp;&nbsp;&nbsp;</a></span>
+        <span><a href="logOut.do">æ³¨é”€</a></span>
+    </div>
+    <div class="head-lef">
+        <c:choose>
+            <c:when test="${sessionScope.username==null}">
+                <span class="header"><a href="userlogin.jsp">ç™»å½•&nbsp;&nbsp;&nbsp;</a></span>
+                <span><a href="Register.jsp">æ³¨å†Œ</a></span>
+                <span class="header"><a href="Rootlogin.jsp">åå°ç™»å½•&nbsp;&nbsp;&nbsp;</a></span>
+            </c:when>
+            <c:otherwise>
+                <span>Welcome!&nbsp;&nbsp;&nbsp;${sessionScope.username }</span>
+            </c:otherwise>
+        </c:choose>
+    </div>
+    <div class="header-Con"></div>
+    <div class="word">æ­£å“Â·ä¼˜é€‰Â·ç”¨å¿ƒ</div>
+</div>
+<!--  <div class="search">
+<div class="inp"> <input type=text  placeholder="Search"></div>
+<div class="sousuo"><input type="submit" class="searchbutton" value="æœç´¢"></div>
+</div>-->
+<div class="gouwuche">
+    <div><img src="images/gouwuche.jpg" class="gowuim"></div>
+    <div class="gowwuword"><a href="${pageContext.request.contextPath}/user/showitem.do">è´­ç‰©è½¦</a></div>
+    <div><img src="images/j.jpg" class="jiangim"></div>
+    <div class="jiangword">å“è´¨</div>
+</div>
+
+<div class="nave">
+    <ul id="nav">
+        <li id="show"><a href="${pageContext.request.contextPath}/Pet.do">å® ç‰©å•†å“</a>
+            <ul>
+                <li><a href="${pageContext.request.contextPath}/commodityJsp.do?p_kind=3">å® ç‰©å±‹èˆ</a></li>
+                <li><a href="${pageContext.request.contextPath}/commodityJsp.do?p_kind=4">ç£¨ç‰™ç©å…·</a></li>
+                <li><a href="${pageContext.request.contextPath}/commodityJsp.do?p_kind=5">å® ç‰©ç¢—</a></li>
+            </ul>
+        </li>
+        <li><a href="">åœ¨çº¿é¢„çº¦</a>
+            <ul>
+                <li><a href="#">ç¾å®¹é¢„çº¦</a></li>
+                <li><a href="#">è¯Šç–—é¢„çº¦</a></li>
+            </ul>
+        </li>
+        <li><a href="${pageContext.request.contextPath }/user/loadOrderListJsp.do">è®¢å•</a>
+        </li>
+        <li><a href="">ç”¨æˆ·å¿ƒå£°</a>
+            <ul>
+                <li><a href="${pageContext.request.contextPath}/animalshowjsp/notice/sellerShow.jsp">å–å®¶ç§€</a></li>
+                <li><a href="${pageContext.request.contextPath}/animalshowjsp/notice/messageBoard.jsp">ç•™è¨€æ¿</a></li>
+            </ul>
+        </li>
+        <li><a href="">å…³äºæˆ‘ä»¬</a>
+            <ul>
+                <li><a href="#">å•†åº—ç®€ä»‹</a></li>
+            </ul>
+        </li>
+
     </ul>
 </div>
-   
-  <div class="shangp">
-     <span ><img src="images/dao.jpg" class="dao"></span>
-      <span class="tiao"><a href="shopping1.jsp">ÌôÑ¡°®³è</span>
-  </div> 
-  
-<!--<div class="shangpxiala">
-    
-   <div class="mao">
-    <span class="mengmao"><a href="">ÃÈÃ¨</a></span>
-    <span class="memgmao1"><a href="buou1.jsp">²¼Å¼Ã¨Ragdoll</a></span> 
-    <span class="memgmao2"><a href="lm.jsp">¶íÂŞË¹À¶Ã¨Russian Blue</a></span> 
-    <span class="memgmao3"><a href="ze.jsp">Ó¢¸ñÀ¼ÕÛ¶úÃ¨:Scottsish Fold|Snooks</a></span>  
-    <span class="memgmao4"><a href="">Âü³à¿ÏÃ¨ munchkin</a></span>  
-    <span class="memgmao5"><a href="">²¨Ë¹Ã¨ persian cat</a></span> 
-    <span class="memgmao6"><a href="">ÃÀ¹ú¶ÌÃ«Ã¨AmericanShorthair</a></span> 
- </div>
-      
- <div class="gou">
-    <span class="menggou"><a href="">ÃÈ¹·</a></span>
-    <span class="menggou1"><a href="hsq.jsp">¹şÊ¿ÆæSiberian Husky</a></span> 
-    <span class="menggou2"><a href="alasijia.jsp">°¢À­Ë¹¼ÓAlaskan Husky </a></span> 
-    <span class="menggou3"><a href="jinmao.jsp">½ğÃ«È®Golden Retriever </a></span>  
-    <span class="menggou4"><a href="caiquan.jsp">²ñÈ®Shiba Inu</a></span>  
-    <span class="menggou5"><a href="guibin.jsp">Ì©µÏ Teddy Dog</a></span> 
-    <span class="menggou6"><a href="bomei.jsp">²©ÃÀÈ®Pomeranian </a></span> 
- </div> -->
-<!-- </div> -->
-   <div class="focus">
-	<div class="images">
-    	<div class="item"><img  src="images/bg1.jpg" class="img"/></div>
-    	<div class="item"><img src="images/4.jpg" class="img"/></div>
-    	<div class="item"><img src="images/bg3.jpg" class="img"/></div>
+
+<div class="shangp">
+    <span><img src="images/dao.jpg" class="dao"></span>
+    <span class="tiao"><a href="shopping1.jsp">æŒ‘é€‰çˆ±å® </a></span>
+</div>
+<div class="focus">
+    <div class="images">
+        <div class="item"><img src="images/bg1.jpg" class="img"/></div>
+        <div class="item"><img src="images/4.jpg" class="img"/></div>
+        <div class="item"><img src="images/bg3.jpg" class="img"/></div>
     </div>
     <div class="title">
-    	<p>ÇëÓÃĞÄ¶Ô´ıÃ¿Ò»¸öÄãÁìÑøµÄ³èÎï</p>
-        <p>ÄãµÄÈËÉúºÜ³¤£¬ËüµÄÈËÉúºÜ¶Ì</p>
-        <p>¶ÔËüÃÇÀ´Ëµ£¬ÄãÊÇËüÃÇµÄËùÓĞ</p>
+        <p>è¯·ç”¨å¿ƒå¯¹å¾…æ¯ä¸€ä¸ªä½ é¢†å…»çš„å® ç‰©</p>
+        <p>ä½ çš„äººç”Ÿå¾ˆé•¿ï¼Œå®ƒçš„äººç”Ÿå¾ˆçŸ­</p>
+        <p>å¯¹å®ƒä»¬æ¥è¯´ï¼Œä½ æ˜¯å®ƒä»¬çš„æ‰€æœ‰</p>
     </div>
     <div class="control">
-    	<span>1</span>
+        <span>1</span>
         <span>2</span>
         <span>3</span>
     </div>
 </div>
 <div class="remen">
     <div class="liwu"><img src="images/liwu.jpg" class="liwuimage"></div>
-    <div class="liwuword">ÈÈÃÅÍÆ¼ö</div>
-    <div><hr></div>  
+    <div class="liwuword">çƒ­é—¨æ¨è</div>
+    <div>
+        <hr>
+    </div>
 </div>
 
- 
+
 <div style="width: auto;height: 60%;font-size: 16px; margin-top: 20px;">
-   <div style=" font-family: »ªÎÄ²ÊÔÆ;font-size: 18px;background-color: antiquewhite;margin-left: 2%;line-height: 39px;" ><span style="color: #ffc001">ÃÈ¹·Çø</span></div>
-    <table width="100%" style="margin-left: 5%"  >
+    <div style=" font-family: åæ–‡å½©äº‘;font-size: 18px;background-color: antiquewhite;margin-left: 2%;line-height: 39px;">
+        <span style="color: #ffc001">èŒç‹—åŒº</span></div>
+    <table width="100%" style="margin-left: 5%">
         <tr>
             <td style="width: 25%"></td>
             <td style="width: 25%"></td>
@@ -134,138 +118,126 @@
         <tr style="width: 100%">
             <c:forEach items="${sessionScope.dog.lists}" var="dog">
                 <td>
-                    <div style="width: 25%; display:inline;line-height: 100%;"><a href="loadAnimalJsp.do?p_kid=${dog.p_kid}">${dog.p_name} <br/>ÌåĞÍ£º${dog.p_bodytype} <br/>ÖÇÉÌ£º${dog.p_purchase} <br/>¼Û¸ñ£º${dog.p_price} <br/><img
-                            type="image" src="${dog.p_path}" width="220" height="220" alt=""></a></div>
+                    <div style="width: 25%; display:inline;line-height: 100%;"><a
+                            href="loadAnimalJsp.do?p_kid=${dog.p_kid}">${dog.p_name} <br/>ä½“å‹ï¼š${dog.p_bodytype}
+                        <br/>æ™ºå•†ï¼š${dog.p_purchase} <br/>ä»·æ ¼ï¼š${dog.p_price} <br/><img
+                                type="image" src="${dog.p_path}" width="220" height="220" alt=""></a></div>
                 </td>
             </c:forEach>
         </tr>
         <tr>
             <td colspan="4">
-                <span>µÚ${sessionScope.dog.currPage+1}/ ${sessionScope.dog.totalPage}Ò³</span>
-                <span>×Ü¼ÇÂ¼Êı£º${sessionScope.dog.totalCount }  Ã¿Ò³ÏÔÊ¾:${sessionScope.dog.pageSize}</span>
+                <span>ç¬¬${sessionScope.dog.currPage+1}/ ${sessionScope.dog.totalPage}é¡µ</span>
+                <span>æ€»è®°å½•æ•°ï¼š${sessionScope.dog.totalCount }  æ¯é¡µæ˜¾ç¤º:${sessionScope.dog.pageSize}</span>
                 <span>
                <c:if test="${sessionScope.dog.currPage != 0}">
-                   <a href="${pageContext.request.contextPath }/loadDogInfo.do?currentPage=0">[Ê×Ò³]</a>
-                   <a href="${pageContext.request.contextPath }/loadDogInfo.do?currentPage=${sessionScope.dog.currPage-1}">[ÉÏÒ»Ò³]</a>
+                   <a href="${pageContext.request.contextPath }/loadDogInfo.do?currentPage=0">[é¦–é¡µ]</a>
+                   <a href="${pageContext.request.contextPath }/loadDogInfo.do?currentPage=${sessionScope.dog.currPage-1}">[ä¸Šä¸€é¡µ]</a>
                </c:if>
 
                <c:if test="${sessionScope.dog.currPage+1!= sessionScope.dog.totalPage}">
-                   <a href="${pageContext.request.contextPath }/loadDogInfo.do?currentPage=${sessionScope.dog.currPage+1}">[ÏÂÒ»Ò³]</a>
-                   <a href="${pageContext.request.contextPath }/loadDogInfo.do?currentPage=${sessionScope.dog.totalPage-1}">[Î²Ò³]</a>
+                   <a href="${pageContext.request.contextPath }/loadDogInfo.do?currentPage=${sessionScope.dog.currPage+1}">[ä¸‹ä¸€é¡µ]</a>
+                   <a href="${pageContext.request.contextPath }/loadDogInfo.do?currentPage=${sessionScope.dog.totalPage-1}">[å°¾é¡µ]</a>
                </c:if>
             </td>
 
         </tr>
-   </span>
+        </span>
     </table>
-    <%--<div style="margin-left: 50px;font-size: 18px;width: 100%;line-height: 95%;">--%>
 
-        <%--<div style="width: 25%; display:inline;line-height: 100%;"><a href="alasijia.jsp">°¢À­Ë¹¼Ó ÌåĞÍ£º´óĞÍÈ® ÖÇÉÌ£ºµÚ50Ãû ¼Û¸ñ£º1000-10000<img--%>
-                <%--type="image" src="images/photos/img01.jpg" width="220" height="220" alt=""></a></div>--%>
-        <%--<div style="width: 25%; display:inline;line-height: 100%;"><a href="jinmao.jsp">½ğÃ«   ÌåĞÍ£º´óĞÍÈ® ÖÇÉÌ£ºµÚ4Ãû ¼Û¸ñ£º1300-7500<img--%>
-                <%--type="image" src="images/photos/img01.jpg" width="220" height="220" alt=""></a></div>--%>
-        <%--<div style="width: 25%; display:inline;line-height: 100%;"><a href="caiquan.jsp">²ñÈ®  ÌåĞÍ£ºÖĞĞÍÈ®  ÖÇÉÌ£ºµÚ8Ãû ¼Û¸ñ£º6000-9000<img--%>
-                <%--type="image" src="images/photos/img01.jpg" width="220" height="220" alt=""></a></div>--%>
-        <%--<div style="width: 25%; display:inline;line-height: 100%;"><a href="bomei.jsp">²©ÃÀ  ÌåĞÍ£º³¬Ğ¡ĞÍÈ®  ÖÇÉÌ£ºµÚ23Ãû ¼Û¸ñ£º12000-20000<img--%>
-                <%--type="image" src="images/photos/img01.jpg" width="220" height="220" alt=""></a></div>--%>
-    <%--</div>--%>
 </div>
-<%--<div class="remaoimg">--%>
-	<%--<div class="gouimg">--%>
-	  <%--<ul>--%>
-       <%--<c:forEach var="h" items="${sessionScope.Hot_goods}" begin="0" end="3">--%>
-					<%--<li><img src="${h.p_path}" /></li>--%>
-       <%--</c:forEach>--%>
-      <%--</ul>--%>
-    <%--</div>--%>
-<%--</div>--%>
 
-
- <div style="width: auto;height: 60%;font-size: 16px;">
-     <div style=" font-family: »ªÎÄ²ÊÔÆ;font-size: 18px;background-color: antiquewhite;margin-left: 2%;line-height: 39px;" ><span style="color: #ffc001">ÃÈÃ¨Çø</span></div>
-     <table width="100%" style="margin-left: 5%">
-         <tr >
-             <c:forEach items="${sessionScope.cat.lists}" var="cat">
-                 <td>
-                     <div style="width: 25%; display:inline;line-height: 100%;"><a href="loadAnimalJsp.do?p_kid=${cat.p_kid}">${cat.p_name} <br/>ÌåĞÍ£º${cat.p_bodytype} <br/>ÖÇÉÌ£º${cat.p_purchase} <br/>¼Û¸ñ£º${cat.p_price} <br/><img
-                             type="image" src="${cat.p_path}" width="220" height="220" alt=""></a></div>
-                 </td>
-             </c:forEach>
-         <tr>
-             <td colspan="4">
-                 <span>µÚ${sessionScope.cat.currPage+1}/ ${sessionScope.cat.totalPage}Ò³</span>
-                 <span>×Ü¼ÇÂ¼Êı£º${sessionScope.cat.totalCount }  Ã¿Ò³ÏÔÊ¾:${sessionScope.cat.pageSize}</span>
-                 <span>
+<div style="width: auto;height: 60%;font-size: 16px;">
+    <div style=" font-family: åæ–‡å½©äº‘;font-size: 18px;background-color: antiquewhite;margin-left: 2%;line-height: 39px;">
+        <span style="color: #ffc001">èŒçŒ«åŒº</span></div>
+    <table width="100%" style="margin-left: 5%">
+        <tr>
+            <c:forEach items="${sessionScope.cat.lists}" var="cat">
+            <td>
+                <div style="width: 25%; display:inline;line-height: 100%;"><a
+                        href="${pageContext.request.contextPath}/loadAnimalJsp.do?p_kid=${cat.p_kid}">${cat.p_name}
+                    <br/>ä½“å‹ï¼š${cat.p_bodytype} <br/>æ™ºå•†ï¼š${cat.p_purchase} <br/>ä»·æ ¼ï¼š${cat.p_price} <br/><img
+                            type="image" src="${cat.p_path}" width="220" height="220" alt=""></a></div>
+            </td>
+            </c:forEach>
+        <tr>
+            <td colspan="4">
+                <span>ç¬¬${sessionScope.cat.currPage+1}/ ${sessionScope.cat.totalPage}é¡µ</span>
+                <span>æ€»è®°å½•æ•°ï¼š${sessionScope.cat.totalCount }  æ¯é¡µæ˜¾ç¤º:${sessionScope.cat.pageSize}</span>
+                <span>
                <c:if test="${sessionScope.cat.currPage != 0}">
-                   <a href="${pageContext.request.contextPath }/loadCatInfo.do?currentPage=0">[Ê×Ò³]</a>
-                   <a href="${pageContext.request.contextPath }/loadCatInfo.do?currentPage=${sessionScope.cat.currPage-1}">[ÉÏÒ»Ò³]</a>
+                   <a href="${pageContext.request.contextPath }/loadCatInfo.do?currentPage=0">[é¦–é¡µ]</a>
+                   <a href="${pageContext.request.contextPath }/loadCatInfo.do?currentPage=${sessionScope.cat.currPage-1}">[ä¸Šä¸€é¡µ]</a>
                </c:if>
 
                <c:if test="${sessionScope.cat.currPage+1!= sessionScope.cat.totalPage}">
-                   <a href="${pageContext.request.contextPath }/loadCatInfo.do?currentPage=${sessionScope.cat.currPage+1}">[ÏÂÒ»Ò³]</a>
-                   <a href="${pageContext.request.contextPath }/loadCatInfo.do?currentPage=${sessionScope.cat.totalPage-1}">[Î²Ò³]</a>
+                   <a href="${pageContext.request.contextPath }/loadCatInfo.do?currentPage=${sessionScope.cat.currPage+1}">[ä¸‹ä¸€é¡µ]</a>
+                   <a href="${pageContext.request.contextPath }/loadCatInfo.do?currentPage=${sessionScope.cat.totalPage-1}">[å°¾é¡µ]</a>
                </c:if>
-             </td>
+            </td>
 
-         </tr>
+        </tr>
 
-         </tr>
-     </table>
- </div>
-   
+        </tr>
+    </table>
+</div>
+
 <div class="meng">
-   <div class="biaoti">¡ª¡ª¡ª¡ªÃÈ³è×ÊÑ¶¡ª¡ª¡ª¡ª
-   </div>
-   <div class="pp">¶¯ÎïÊÇÈËÀàµÄÅóÓÑ£¬¾Ü¾øÉËº¦</div>
-   </div> 
+    <div class="biaoti">â€”â€”â€”â€”èŒå® èµ„è®¯â€”â€”â€”â€”
+    </div>
+    <div class="pp">åŠ¨ç‰©æ˜¯äººç±»çš„æœ‹å‹ï¼Œæ‹’ç»ä¼¤å®³</div>
+</div>
 <div class="about">
-   <div class="dog">
-     <span class="dog1"><img src="images/7.jpg"></span>
-     <span class="dog2"><h3>¹·µÄÊÙÃüÄÜ»î¶à¾Ã</h3><br>
-     <p>ÒÅº¶µÄÊÇÄ¿Ç°»¹Ã»ÓĞÈ·ÇĞµÄ»Ø´ğÕâ¸öÎÊÌâ£¬ÕâÊÇÒòÎª£¬¹·µÄÊµ¼ÊÊÙÃüÈ¡¾öÓÚÆ·ÖÖºÍ´óĞ¡¡£</p>
+    <div class="dog">
+        <span class="dog1"><img src="images/7.jpg"></span>
+        <span class="dog2"><h3>ç‹—çš„å¯¿å‘½èƒ½æ´»å¤šä¹…</h3><br>
+     <p>é—æ†¾çš„æ˜¯ç›®å‰è¿˜æ²¡æœ‰ç¡®åˆ‡çš„å›ç­”è¿™ä¸ªé—®é¢˜ï¼Œè¿™æ˜¯å› ä¸ºï¼Œç‹—çš„å®é™…å¯¿å‘½å–å†³äºå“ç§å’Œå¤§å°ã€‚</p>
      
-     </span> 
-   </div> 
+     </span>
+    </div>
     <div class="cat">
-     <span class="cat1"> <img src="images/buou2.jpg"></span>
-     <span class="cat2"><h3>²¼Å¼Ã¨µÄÑø»¤</h3><br>
-     <p>²¼Å¼Ã¨ÆäÊµÊÇÒ»ÖÖ·Ç³£ÌğÃÛµÄÃ¨ßä£¬ËüÃÇ²»Ï²»¶¹Â¶À¼ÅÄ¯£¬¿ÊÍûÓëÖ÷ÈË»¥¶¯ÍæÀÖ¡£Òò´Ë£¬ÔÚËÇÑøµÄ¹ı³ÌÖĞ£¬ĞèÒªÖ÷ÈË¾­³£³éÈ¡Ò»¶¨µÄÊ±¼ä£¬À´ÅãÃ¨ßä»¥¶¯½»Á÷£¬±Ë´Ë½øĞĞ¹µÍ¨À­½ü¸ĞÇé¡£</p>
-     </span> 
-   </div> 
+        <span class="cat1"> <img src="images/buou2.jpg"></span>
+        <span class="cat2"><h3>å¸ƒå¶çŒ«çš„å…»æŠ¤</h3><br>
+     <p>å¸ƒå¶çŒ«å…¶å®æ˜¯ä¸€ç§éå¸¸ç”œèœœçš„çŒ«å’ªï¼Œå®ƒä»¬ä¸å–œæ¬¢å­¤ç‹¬å¯‚å¯ï¼Œæ¸´æœ›ä¸ä¸»äººäº’åŠ¨ç©ä¹ã€‚å› æ­¤ï¼Œåœ¨é¥²å…»çš„è¿‡ç¨‹ä¸­ï¼Œéœ€è¦ä¸»äººç»å¸¸æŠ½å–ä¸€å®šçš„æ—¶é—´ï¼Œæ¥é™ªçŒ«å’ªäº’åŠ¨äº¤æµï¼Œå½¼æ­¤è¿›è¡Œæ²Ÿé€šæ‹‰è¿‘æ„Ÿæƒ…ã€‚</p>
+     </span>
+    </div>
 </div>
 
 <div class="center">
-      <div class="centerword">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ÎÒÃÇµÄ·şÎñÔÚÓÚÓÃĞÄ£¬³èÎïÊÛ³öºóÒÂÊ³×¡ĞĞÒ½ÁÆ½ÔÓĞ±£ÕÏ</div>
-      <div class="centerword">Our service is the heart, after the sale of basic necessities of life are pet medical insurance </div>
-  </div>
+    <div class="centerword">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;æˆ‘ä»¬çš„æœåŠ¡åœ¨äºç”¨å¿ƒï¼Œå® ç‰©å”®å‡ºåè¡£é£Ÿä½è¡ŒåŒ»ç–—çš†æœ‰ä¿éšœ</div>
+    <div class="centerword">Our service is the heart, after the sale of basic necessities of life are pet medical
+        insurance
+    </div>
+</div>
 <div class="footer">
-   <div class="wen">ÏëÁË½â¸ü¶àĞÅÏ¢£¬»¶Ó­ÖÂµç¾«Áé³èÎïµê</div> 
-   
-   <div class="sos">
-   
-    <div class="sod">µç»°£º8888888</div>
-   </div>
-   
-   <div class="guanjian">ÎÂË³Ğ¡Ã¨&nbsp;&nbsp;&nbsp;&nbsp;¸ãĞ¦¹·¹·&nbsp;&nbsp;&nbsp;&nbsp;»îÆÃµÄÃ¨&nbsp;&nbsp;&nbsp;&nbsp;
-   ´ÏÃ÷µÄ¹·</div>
-   
-  <!-- <div class="sant">
-      ÕıÆ·±£ÕÏ&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;ÈıÊ®Ğ¡Ê±°üÍË»»&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;ËÄÊ®Ğ¡Ê±·¢»õ
-  </div>-->
-  <div class="santu">
-  <div class="santu1">
-  <div class=""><img src="images/zhen.jpg" ></div>
-  <div>ÕıÆ·±£ÕÏ</div>
-  </div>
-  <div class="santu2">
-  <div class=""><img src="images/zhen2.jpg" ></div>
-  <div>30ÌìÎŞÀíÓÉb°üÍË»»</div>
-  </div>
-  <div class="santu3">
-  <div class=""><img src="images/zhen3.jpg" ></div>
-  <div>48Ğ¡Ê±ÉÁµç·¢»õ</div>
-  </div>
-  </div>
-  <br>
-</div> 
+    <div class="wen">æƒ³äº†è§£æ›´å¤šä¿¡æ¯ï¼Œæ¬¢è¿è‡´ç”µç²¾çµå® ç‰©åº—</div>
+
+    <div class="sos">
+
+        <div class="sod">ç”µè¯ï¼š8888888</div>
+    </div>
+
+    <div class="guanjian">æ¸©é¡ºå°çŒ«&nbsp;&nbsp;&nbsp;&nbsp;æç¬‘ç‹—ç‹—&nbsp;&nbsp;&nbsp;&nbsp;æ´»æ³¼çš„çŒ«&nbsp;&nbsp;&nbsp;&nbsp;
+        èªæ˜çš„ç‹—
+    </div>
+
+    <!-- <div class="sant">
+        æ­£å“ä¿éšœ&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;ä¸‰åå°æ—¶åŒ…é€€æ¢&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;å››åå°æ—¶å‘è´§
+    </div>-->
+    <div class="santu">
+        <div class="santu1">
+            <div class=""><img src="images/zhen.jpg"></div>
+            <div>æ­£å“ä¿éšœ</div>
+        </div>
+        <div class="santu2">
+            <div class=""><img src="images/zhen2.jpg"></div>
+            <div>30å¤©æ— ç†ç”±båŒ…é€€æ¢</div>
+        </div>
+        <div class="santu3">
+            <div class=""><img src="images/zhen3.jpg"></div>
+            <div>48å°æ—¶é—ªç”µå‘è´§</div>
+        </div>
+    </div>
+    <br>
+</div>
 </body>

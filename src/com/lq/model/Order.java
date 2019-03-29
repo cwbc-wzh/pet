@@ -27,7 +27,7 @@ public class Order {
     /**
      * 用户电话
      */
-    private int u_phone;
+    private String u_phone;
     /**
      * 定义用户的地址
      */
@@ -35,7 +35,7 @@ public class Order {
     /**
      * 订单的价钱
      */
-    private int o_price;
+    private double o_price;
     /**
      * 订单的件数
      */
@@ -48,6 +48,20 @@ public class Order {
      * 订单状态 1.等待付款 2.准备发货 3.等待确认 4.交易成功 5.已取消
      */
     private String o_status;
+
+    /**收件人名称*/
+    private String realname;
+
+    /**图片*/
+    private String imagePath;
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
 
     public String getO_id() {
         return o_id;
@@ -81,11 +95,11 @@ public class Order {
         this.u_name = u_name;
     }
 
-    public int getU_phone() {
+    public String getU_phone() {
         return u_phone;
     }
 
-    public void setU_phone(int u_phone) {
+    public void setU_phone(String u_phone) {
         this.u_phone = u_phone;
     }
 
@@ -97,8 +111,12 @@ public class Order {
         this.o_address = o_address;
     }
 
-    public int getO_price() {
+    public double getO_price() {
         return o_price;
+    }
+
+    public void setO_price(double o_price) {
+        this.o_price = o_price;
     }
 
     public void setO_price(int o_price) {
@@ -127,6 +145,14 @@ public class Order {
 
     public void setO_status(String o_status) {
         this.o_status = o_status;
+    }
+
+    public String getRealname() {
+        return realname;
+    }
+
+    public void setRealname(String realname) {
+        this.realname = realname;
     }
 
     @Override

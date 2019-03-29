@@ -1,0 +1,19 @@
+.divContent {
+	width: 880px;
+	height: 20px;
+	margin-left: 50px;
+	margin-top: 30px;
+}
+
+.divPay {
+	width: 880px;
+
+	margin-left: 50px;
+	margin-top: 20px;
+}
+
+.divText {
+	font-size: 15px;
+	font-weight: 900;
+	margin: 20px;
+}

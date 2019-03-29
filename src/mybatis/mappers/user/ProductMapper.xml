@@ -7,7 +7,7 @@
         from products
         <where>
             1=1
-            <if test="type!=3">
+            <if test="type!=6">
               AND p_kind=#{type}
             </if>
         </where>
@@ -19,7 +19,7 @@
         SELECT COUNT(*) FROM products
         <where>
             1=1
-            <if test="type!=3">
+            <if test="type!=6">
                 AND p_kind=#{type}
             </if>
         </where>

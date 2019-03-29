@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=gbk"
-    pageEncoding="gbk"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gbk">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
  <link  rel="stylesheet"   href="css/gouwuche.css">
    <link  rel="stylesheet"   href="css/index.css"> 
@@ -25,14 +25,14 @@
 <body>
    <div class="header">
  <div class="head-rgh">
- <span><a href="Pet">ÉèÎªÊ×Ò³&nbsp;&nbsp;&nbsp;</a></span> 
-   <span><a href="">ÊÕ²Ø±¾Õ¾</a></span>
+ <span><a href="Pet">è®¾ä¸ºé¦–é¡µ&nbsp;&nbsp;&nbsp;</a></span> 
+   <span><a href="">æ”¶è—æœ¬ç«™</a></span>
    </div>
    <div class="head-lef">
   <c:choose>
    	<c:when test="${sessionScope.username } == null">
-   		<span class="header"><a href="userlogin.jsp">µÇÂ¼&nbsp;&nbsp;&nbsp;</a></span> 
-   		<span><a href="Register.jsp">×¢²á</a></span>
+   		<span class="header"><a href="userlogin.jsp">ç™»å½•&nbsp;&nbsp;&nbsp;</a></span> 
+   		<span><a href="Register.jsp">æ³¨å†Œ</a></span>
    	</c:when>
    	<c:otherwise>
    		<span>Welcome!&nbsp;&nbsp;&nbsp;${sessionScope.username }</span>	
@@ -41,53 +41,53 @@
    </div>
     
      <div class="header-Con"><img src="images/logo.jpg" alt="" class="logo"></div>
-    <div class="word">ÕıÆ·¡¤ÓÅÑ¡¡¤ÓÃĞÄ</div>
+    <div class="word">æ­£å“Â·ä¼˜é€‰Â·ç”¨å¿ƒ</div>
    </div>
    <div class="search">
   <div class="inp"> <input type=text  placeholder="Search"></div>
-<div class="sousuo"><input type="submit" class="searchbutton" value="ËÑË÷"></div> 
+<div class="sousuo"><input type="submit" class="searchbutton" value="æœç´¢"></div> 
    </div>
  <div class="gouwuche">
   <div><img src="images/gouwuche.jpg" class="gowuim"></div>
-  <div class="gowwuword"><a href="queryCart">¹ºÎï³µ</a></div>
+  <div class="gowwuword"><a href="queryCart">è´­ç‰©è½¦</a></div>
   <div ><img src="images/j.jpg" class="jiangim"></div>
-  <div class="jiangword">Æ·ÖÊ</div>
+  <div class="jiangword">å“è´¨</div>
   </div>
   
   <div class="nave">
      <ul id="nav">
-        <li id="show"><a href="Pet">³èÎïÉÌÆ·</a>
+        <li id="show"><a href="Pet">å® ç‰©å•†å“</a>
            <ul>
-         <li><a href="wuse.jsp"">³èÎïÎİÉá</a></li> 
-             <li><a href="#">Ä¥ÑÀÍæ¾ß</a></li> 
-             <li><a href="#">³èÎïÍë</a></li>  
+         <li><a href="wuse.jsp">å® ç‰©å±‹èˆ</a></li>
+             <li><a href="#">ç£¨ç‰™ç©å…·</a></li> 
+             <li><a href="#">å® ç‰©ç¢—</a></li>  
             </ul></li>
-            <li><a href="shopping1.jsp">ÔÚÏßÔ¤Ô¼</a>
+            <li><a href="shopping1.jsp">åœ¨çº¿é¢„çº¦</a>
            <ul>
-         <li><a href="#">ÃÀÈİÔ¤Ô¼</a></li> 
-             <li><a href="#">ÕïÁÆÔ¤Ô¼</a></li> 
+         <li><a href="#">ç¾å®¹é¢„çº¦</a></li> 
+             <li><a href="#">è¯Šç–—é¢„çº¦</a></li> 
             </ul></li>  
-        <li><a href="test.jsp">¶©µ¥</a>
+        <li><a href="${pageContext.request.contextPath }/user/loadOrderListJsp.do">è®¢å•</a>
       </li>
-           <li><a href="">ÓÃ»§ĞÄÉù</a>
+           <li><a href="">ç”¨æˆ·å¿ƒå£°</a>
               <ul>
-         <li><a href="#">Âô¼ÒĞã</a></li> 
-             <li><a href="#">ÁôÑÔ°å</a></li> 
+         <li><a href="#">å–å®¶ç§€</a></li> 
+             <li><a href="#">ç•™è¨€æ¿</a></li> 
             </ul></li>
-            <li><a href="">¹ØÓÚÎÒÃÇ</a>
+            <li><a href="">å…³äºæˆ‘ä»¬</a>
                <ul>
-         <li><a href="#">ÉÌµê¼ò½é</a></li> 
+         <li><a href="#">å•†åº—ç®€ä»‹</a></li> 
             </ul></li>
            
     </ul>
 </div>
     <div class="shangp">
      <span ><img src="images/dao.jpg" class="dao"></span>
-      <span class="tiao"><a href="">ÌôÑ¡°®³è</a></span>
+      <span class="tiao"><a href="">æŒ‘é€‰çˆ±å® </a></span>
   </div> 
   
 <div class="shword">
-    È«²¿ÉÌÆ·
+    å…¨éƒ¨å•†å“
 </div>
  
    <form name="form2" action="" method="get"> 
@@ -96,13 +96,13 @@
         <thead>
         <tr>
         <th><label> 
-        <input type="checkbox" class="check-all check">&nbsp;&nbsp;&nbsp;&nbsp;È«Ñ¡</label></th>
+        <input type="checkbox" class="check-all check">&nbsp;&nbsp;&nbsp;&nbsp;å…¨é€‰</label></th>
   <!--        <span></span>-->
-            <th>ÉÌÆ·ĞÅÏ¢</th>
-              <th>µ¥¼Û</th>
-               <th>ÊıÁ¿</th>
-                <th>×Ü¼Û</th>
-                 <th>²Ù×÷</th>
+            <th>å•†å“ä¿¡æ¯</th>
+              <th>å•ä»·</th>
+               <th>æ•°é‡</th>
+                <th>æ€»ä»·</th>
+                 <th>æ“ä½œ</th>
             </tr>
       </thead>
  
@@ -129,9 +129,9 @@
 					</td>
 					<td class="subtotal">${c.c_total}</td>
 					 <td class="operation">
-					 <div><a href="javascript:buy();"><input type="button" value="¹ºÂò" class="buy"></a></div>
-					<div><a href="javascript:remove();"><input type="button" value="É¾³ı" class="del"></a></div>
-					<!--  <span class="delete">É¾³ı</span> -->
+					 <div><a href="javascript:buy();"><input type="button" value="è´­ä¹°" class="buy"></a></div>
+					<div><a href="javascript:remove();"><input type="button" value="åˆ é™¤" class="del"></a></div>
+					<!--  <span class="delete">åˆ é™¤</span> -->
 					 </td>
 					 </tr>
 					
@@ -139,18 +139,18 @@
       </tbody>
       </table>
       <div class="foot" id="foot">
-    <label class="fl select-all"><input type="checkbox" class="check-all check"/>&nbsp;&nbsp;È«Ñ¡</label>
-    <a class="fl delete" id="deleteAll" href="javascript:;">É¾³ı</a>
-    <div class="fr closing" onclick="getTotal();"><div><a href="javascript:buy();"><input type="button" value="½áËã" class="buy1"></a></div>
+    <label class="fl select-all"><input type="checkbox" class="check-all check"/>&nbsp;&nbsp;å…¨é€‰</label>
+    <a class="fl delete" id="deleteAll" href="javascript:;">åˆ é™¤</a>
+    <div class="fr closing" onclick="getTotal();"><div><a href="javascript:buy();"><input type="button" value="ç»“ç®—" class="buy1"></a></div>
 </div>
     <input type="hidden" id="cartTotalPrice" />
-    <div class="fr total">ºÏ¼Æ£º£¤<span id="priceTotal">0.00</span></div>
-    <div class="fr selected" id="selected">ÒÑÑ¡ÉÌÆ·<span id="selectedTotal">0</span>¼ş<span class="arrow up">¦æ</span><span class="arrow down">¦ç</span></div>
+    <div class="fr total">åˆè®¡ï¼šï¿¥<span id="priceTotal">0.00</span></div>
+    <div class="fr selected" id="selected">å·²é€‰å•†å“<span id="selectedTotal">0</span>ä»¶<span class="arrow up">ï¸½</span><span class="arrow down">ï¸¾</span></div>
     <div class="selected-view">
       <div id="selectedViewList" class="clearfix">
-        <div><img src="images/1.jpg"><span>È¡ÏûÑ¡Ôñ</span></div>
+        <div><img src="images/1.jpg"><span>å–æ¶ˆé€‰æ‹©</span></div>
       </div>
-      <span class="arrow">¡ô<span>¡ô</span></span> </div>
+      <span class="arrow">â—†<span>â—†</span></span> </div>
   </div>
    </div>
   
@@ -159,38 +159,38 @@
   
  
 <div class="center">
-      <div class="centerword">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ÎÒÃÇµÄ·şÎñÔÚÓÚÓÃĞÄ£¬³èÎïÊÛ³öºóÒÂÊ³×¡ĞĞÒ½ÁÆ½ÔÓĞ±£ÕÏ</div>
+      <div class="centerword">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;æˆ‘ä»¬çš„æœåŠ¡åœ¨äºç”¨å¿ƒï¼Œå® ç‰©å”®å‡ºåè¡£é£Ÿä½è¡ŒåŒ»ç–—çš†æœ‰ä¿éšœ</div>
       <div class="centerword">Our service is the heart, after the sale of basic necessities of life are pet medical insurance </div>
   </div>
   <div class="footer">
-   <div class="wen">ÏëÁË½â¸ü¶àĞÅÏ¢£¬Çëµã»÷ËÑË÷</div> 
+   <div class="wen">æƒ³äº†è§£æ›´å¤šä¿¡æ¯ï¼Œè¯·ç‚¹å‡»æœç´¢</div> 
    
    <div class="sos">
    <div class="sinp"><input type="text"></div> 
-    <div class="sod"><input type="button" class="sub" value="µãÎÒÑ°ÕÒ"></div>
+    <div class="sod"><input type="button" class="sub" value="ç‚¹æˆ‘å¯»æ‰¾"></div>
    </div>
    
-   <div class="guanjian">ÎÂË³Ğ¡Ã¨&nbsp;&nbsp;&nbsp;&nbsp;¸ãĞ¦¹·¹·&nbsp;&nbsp;&nbsp;&nbsp;»îÆÃµÄÃ¨&nbsp;&nbsp;&nbsp;&nbsp;
-   ´ÏÃ÷µÄ¹·</div>
+   <div class="guanjian">æ¸©é¡ºå°çŒ«&nbsp;&nbsp;&nbsp;&nbsp;æç¬‘ç‹—ç‹—&nbsp;&nbsp;&nbsp;&nbsp;æ´»æ³¼çš„çŒ«&nbsp;&nbsp;&nbsp;&nbsp;
+   èªæ˜çš„ç‹—</div>
    
   <div class="santu">
   <div class="santu1">
   <div class=""><img src="images/zhen.jpg" ></div>
-  <div>ÕıÆ·±£ÕÏ</div>
+  <div>æ­£å“ä¿éšœ</div>
   </div>
   <div class="santu2">
   <div class=""><img src="images/zhen2.jpg" ></div>
-  <div>30ÌìÎŞÀíÓÉb°üÍË»»</div>
+  <div>30å¤©æ— ç†ç”±båŒ…é€€æ¢</div>
   </div>
   <div class="santu3">
   <div class=""><img src="images/zhen3.jpg" ></div>
-  <div>48Ğ¡Ê±ÉÁµç·¢»õ</div>
+  <div>48å°æ—¶é—ªç”µå‘è´§</div>
   </div>
   </div>
   
   
   <br>
-   <div¡¡id="banquan">&copy;ÄÏ¾©Ïş×¯Ñ§ÔºZLM°æÈ¨ËùÓĞ</div>
+   <div id="banquan">&copy;å—äº¬æ™“åº„å­¦é™¢ZLMç‰ˆæƒæ‰€æœ‰</div>
 </div>
 </body>
 </html>

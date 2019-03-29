@@ -1,285 +1,268 @@
-<%@ page language="java" contentType="text/html; charset=gbk"
-         pageEncoding="gbk"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+         pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=gbk">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Insert title here</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
-    <meta name="copyright" content="" />
-    <script type="text/javascript" src="/js/jquery.min.js"></script>
-    <script type="text/javascript" src="/js/lunbo.js"></script>
-    <script src="/js/jquery-1.8.2.min.js"></script>
-    <script src="/js/common.js"></script>
+    <meta name="copyright" content=""/>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/lunbo.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery-1.8.2.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/common.js"></script>
 
-    <link href="/css/alasijia.css" rel="stylesheet" type="text/css" />
-    <script src="/js/slider.js" type="text/javascript"></script>
-    <!--<script type="text/javascript">
-    $(document).ready(function() {
-    $('#slider').slider({ speed: 500 });
-    });
-    </script>-->
-    <%--<script type="text/javascript">--%>
-    <%--$(document).ready(function(){--%>
-    <%--var showproduct = {--%>
-    <%--"boxid":"showbox",--%>
-    <%--"sumid":"showsum",--%>
-    <%--"boxw":400,//¿í¶È,¸Ã°æ±¾ÖĞÇë°Ñ¿í¸ßÌîĞ´³ÉÒ»Ñù--%>
-    <%--"boxh":400,//¸ß¶È,¸Ã°æ±¾ÖĞÇë°Ñ¿í¸ßÌîĞ´³ÉÒ»Ñù--%>
-    <%--"sumw":60,//ÁĞ±íÃ¿¸ö¿í¶È,¸Ã°æ±¾ÖĞÇë°Ñ¿í¸ßÌîĞ´³ÉÒ»Ñù--%>
-    <%--"sumh":60,//ÁĞ±íÃ¿¸ö¸ß¶È,¸Ã°æ±¾ÖĞÇë°Ñ¿í¸ßÌîĞ´³ÉÒ»Ñù--%>
-    <%--"sumi":7,//ÁĞ±í¼ä¸ô--%>
-    <%--"sums":5,//ÁĞ±íÏÔÊ¾¸öÊı--%>
-    <%--"sumsel":"sel",--%>
-    <%--"sumborder":1,//ÁĞ±í±ß¿ò£¬Ã»ÓĞ±ß¿òÌîĞ´0£¬±ß¿òÔÚcssÖĞĞŞ¸Ä--%>
-    <%--"lastid":"showlast",--%>
-    <%--"nextid":"shownext"--%>
-    <%--};//²ÎÊı¶¨Òå--%>
-    <%--$.ljsGlasses.pcGlasses(showproduct);//·½·¨µ÷ÓÃ£¬Îñ±ØÔÚ¼ÓÔØÍêºóÖ´ĞĞ--%>
-    <%--});--%>
-    <%--$(document).ready(function() {--%>
-    <%--$('#slider').slider({ speed: 500 });--%>
-    <%--});--%>
-    <%--function buyCart(){--%>
-    <%--var petName--%>
-    <%--alert("")--%>
-    <%--document.form1.action="buycart.jsp";//µØÖ·ĞÅÏ¢Ò³Ãæ--%>
-    <%--document.form1.submit();--%>
-    <%--}--%>
-    <%--function addCart(){--%>
-    <%--document.form1.action="addCart";--%>
-    <%--document.form1.submit();--%>
-    <%--}--%>
-    <%--</script>--%>
+
+    <script src="${pageContext.request.contextPath}/js/jquery-1.5.1.js"></script>
+    <script src="${pageContext.request.contextPath}/js/round.js" type="text/javascript"></script>
+
+    <link href="${pageContext.request.contextPath}/css/alasijia.css" rel="stylesheet" type="text/css"/>
+    <script src="${pageContext.request.contextPath}/js/slider.js" type="text/javascript"></script>
+
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/showitem.css">
+
+    <script type="text/javascript">
+        //è®¡ç®—åˆè®¡
+        $(function () {
+            var total = 0;
+            $(".subtotal").each(function () {
+                total += Number($(this).text());
+            });
+            $("#total").text(round(total, 2));
+        });
+
+        
+        function createOrder(){
+
+            var cartItemIds=$("#cartItemIds").val();
+            var address=$("#address").val();
+            var receiveName=$("#receiveName").val();
+            var receivePhone=$("#receivePhone").val();
+            $.ajax(
+                {
+                    async:false,
+                    cache:false,
+                    url:'${pageContext.request.contextPath}/user/createOrderInfo.do',
+                    data:{cartItemIds:cartItemIds,
+                        address:quantity,
+                        receiveName:receiveName,
+                        receivePhone:receivePhone
+                    },
+                    type:'POST',
+                    dataType:'json',
+                    contentType: 'application/json',
+                    success:function(result)
+                    {
+                        if(result.code=='SUCCESS'){
+                            window.location.href="${pageContext.request.contextPath}/user/orderSuccess.do" ;
+                        }
+                        else{
+                            alert("åˆ›å»ºè®¢å•å¤±è´¥ï¼Œè¯·é‡æ–°æäº¤è®¢å•!");
+                        }
+                    },
+                    error:function (result) {
+                        alert("å‘ç”ŸæœªçŸ¥é”™è¯¯ï¼Œè¯·ç™»å½•ä¹‹åå†è¯•")
+                        window.location.href="${pageContext.request.contextPath}/userlogin.jsp";
+                    }
+                });
+        }
+        
+    </script>
 </head>
 
 <body>
+<%
+
+
+%>
 <div class="header">
     <div class="head-rgh">
-        <span><a href="Pet">ÉèÎªÊ×Ò³&nbsp;&nbsp;&nbsp;</a></span>
-        <span><a href="">ÊÕ²Ø±¾Õ¾</a></span>
+        <span><a href="${pageContext.request.contextPath}/Pet.do">é¦–é¡µ&nbsp;&nbsp;&nbsp;</a></span>
+        <span><a href="${pageContext.request.contextPath}/logOut.do">æ³¨é”€</a></span>
     </div>
     <div class="head-lef">
         <c:choose>
-            <c:when test="${sessionScope.username == null} ">
-                <span class="header"><a href="userlogin.jsp">µÇÂ¼&nbsp;&nbsp;&nbsp;</a></span>
-                <span><a href="Register.jsp">×¢²á</a></span>
+            <c:when test="${sessionScope.username==null}">
+                <span class="header"><a href="${pageContext.request.contextPath}/userlogin.jsp">ç™»å½•&nbsp;&nbsp;&nbsp;</a></span>
+                <span><a href="${pageContext.request.contextPath}/Register.jsp">æ³¨å†Œ</a></span>
+                <span class="header"><a href="${pageContext.request.contextPath}/Rootlogin.jsp">åå°ç™»å½•&nbsp;&nbsp;&nbsp;</a></span>
             </c:when>
             <c:otherwise>
                 <span>Welcome!&nbsp;&nbsp;&nbsp;${sessionScope.username }</span>
             </c:otherwise>
         </c:choose>
     </div>
-
-    <div class="header-Con"><img src="images/logo.jpg" alt="" class="logo"></div>
-    <div class="word">ÕıÆ·¡¤ÓÅÑ¡¡¤ÓÃĞÄ</div>
+    <div class="header-Con"></div>
+    <div class="word">æ­£å“Â·ä¼˜é€‰Â·ç”¨å¿ƒ</div>
 </div>
 <div class="search">
-    <div class="inp"> <input type=text  placeholder="Search"></div>
-    <div class="sousuo"><input type="submit" class="searchbutton" value="ËÑË÷"></div>
+    <div class="inp"><input type=text placeholder="Search"></div>
+    <div class="sousuo"><input type="submit" class="searchbutton" value="æœç´¢"></div>
 </div>
 <div class="gouwuche">
-    <div><img src="images/gouwuche.jpg" class="gowuim"></div>
-    <div class="gowwuword"><a href="queryCart">¹ºÎï³µ</a></div>
-    <div ><img src="images/j.jpg" class="jiangim"></div>
-    <div class="jiangword">Æ·ÖÊ</div>
+    <div><img src="${pageContext.request.contextPath}/images/gouwuche.jpg" class="gowuim"></div>
+    <div class="gowwuword"><a href="${pageContext.request.contextPath}/user/showitem.do">è´­ç‰©è½¦</a></div>
+    <div><img src="${pageContext.request.contextPath}/images/j.jpg" class="jiangim"></div>
+    <div class="jiangword">å“è´¨</div>
 </div>
 
 <div class="nave">
     <ul id="nav">
-        <li id="show"><a href="Pet">³èÎïÉÌÆ·</a>
+        <li id="show"><a href="${pageContext.request.contextPath}/Pet.do">å® ç‰©å•†å“</a>
             <ul>
-                <li><a href="wuse.jsp">³èÎïÎİÉá</a></li>
-                <li><a href="my.jsp">Ä¥ÑÀÍæ¾ß</a></li>
-                <li><a href="wan.jsp">³èÎïÍë</a></li>
-            </ul></li>
-        <li><a href="shopping1.jsp">ÔÚÏßÔ¤Ô¼</a>
-            <ul>
-                <li><a href="#">ÃÀÈİÔ¤Ô¼</a></li>
-                <li><a href="#">ÕïÁÆÔ¤Ô¼</a></li>
-            </ul></li>
-        <li><a href="test.jsp">¶©µ¥</a>
+                <li><a href="${pageContext.request.contextPath}/commodityJsp.do?p_kind=3">å® ç‰©å±‹èˆ</a></li>
+                <li><a href="${pageContext.request.contextPath}/commodityJsp.do?p_kind=4">ç£¨ç‰™ç©å…·</a></li>
+                <li><a href="${pageContext.request.contextPath}/commodityJsp.do?p_kind=5">å® ç‰©ç¢—</a></li>
+            </ul>
         </li>
-        <li><a href="">ÓÃ»§ĞÄÉù</a>
+        <li><a href="shopping1.jsp">åœ¨çº¿é¢„çº¦</a>
             <ul>
-                <li><a href="#">Âô¼ÒĞã</a></li>
-                <li><a href="#">ÁôÑÔ°å</a></li>
-            </ul></li>
-        <li><a href="">¹ØÓÚÎÒÃÇ</a>
+                <li><a href="#">ç¾å®¹é¢„çº¦</a></li>
+                <li><a href="#">è¯Šç–—é¢„çº¦</a></li>
+            </ul>
+        </li>
+        <li><a href="${pageContext.request.contextPath }/user/loadOrderListJsp.do">è®¢å•</a>
+        </li>
+        <li><a href="">ç”¨æˆ·å¿ƒå£°</a>
             <ul>
-                <li><a href="#">ÉÌµê¼ò½é</a></li>
-            </ul></li>
+                <li><a href="#">å–å®¶ç§€</a></li>
+                <li><a href="#">ç•™è¨€æ¿</a></li>
+            </ul>
+        </li>
+        <li><a href="">å…³äºæˆ‘ä»¬</a>
+            <ul>
+                <li><a href="#">å•†åº—ç®€ä»‹</a></li>
+            </ul>
+        </li>
 
     </ul>
 </div>
 
 <div class="shangp">
-    <span ><img src="images/dao.jpg" class="dao"></span>
-    <span class="tiao"><a href="">ÌôÑ¡°®³è</a></span>
+    <span><img src="${pageContext.request.contextPath}/images/dao.jpg" class="dao"></span>
+    <span class="tiao"><a href="${pageContext.request.contextPath}/Pet.do">æŒ‘é€‰çˆ±å® </a></span>
 </div>
 
-<div style="  font-size: 19px;background-color:beige;margin-top: 1%;"><span style="font-family: »ªÎÄ²ÊÔÆ;font-size: 20px;color: #ffc001;margin-left: 3%;line-height: 35px;">Éú³É¶©µ¥</span></div>
+<div style="  font-size: 19px;background-color:beige;margin-top: 1%;"><span
+        style="font-family: åæ–‡å½©äº‘;font-size: 20px;color: #ffc001;margin-left: 3%;line-height: 35px;">ç”Ÿæˆè®¢å•</span></div>
 <div style=" margin:0 auto;">
-    <form id="form1" action="" method="post">
+    <form id="form1" action="${pageContext.request.contextPath}/user/createOrderInfo.do" method="post">
         <%--<input type="hidden" name="cartItemIds" value="${cartItemIds }"/>--%>
-        <input type="hidden" name="cartItemIds" value=""/>
-        <input type="hidden" name="method" value="createOrder"/>
-        <table width="100%"style="height: 100%" align="center" cellpadding="0" cellspacing="0" >
+        <input type="hidden" name="cartItemIds" value="${cartItemIds}"/>
+
+        <table width="100%" style="height: 100%" align="center" cellpadding="0" cellspacing="0">
             <tr align="center" style="height: 40px;background-color: #c9ceb4">
                 <td width="8%">&nbsp;</td>
-                <td width="50%">ÎïÆ·Ãû³Æ</td>
-                <td>µ¥¼Û</td>
-                <td>ÊıÁ¿</td>
-                <td>Ğ¡¼Æ</td>
+                <td width="50%">ç‰©å“åç§°</td>
+                <td>å•ä»·</td>
+                <td>æ•°é‡</td>
+                <td>å°è®¡</td>
             </tr>
 
 
-            <%--<c:forEach items="${cartItemList }" var="cartItem"><!--Ê¹ÓÃel±í´ïÊ½"${cartItemList }"µÈ»¨À¨ºÅÍâÃæ²»ÄÜ¼Ó¿Õ¸ñ »¨À¨ºÅÀïÃæ¿ÉÒÔ¼Ó¿Õ¸ñ-->--%>
-            <%--<tr align="center">--%>
-            <%--<td align="right">--%>
-            <%--<a class="linkImage" href="<c:url value=''/>"><img border="0" width="54" align="top" src="<c:rl value='/${cartItem.drug.image_b }'/>"/></a>--%>
-            <%--</td>--%>
-            <%--<td align="left">--%>
-            <%--<a href="<c:url value=''/>"><span>${cartItem.drug.mname }</span></a>--%>
-            <%--</td>--%>
-            <%--<td>&yen;${cartItem.drug.currPrice }</td>--%>
-            <%--<td>${cartItem.quantity }</td>--%>
-            <%--<td>--%>
-            <%--<span class="price_n">&yen;<span class="subtotal">${cartItem.subtotal }</span></span>--%>
-            <%--</td>--%>
-            <%--</tr>--%>
-            <%--</c:forEach>--%>
-
-
-
-            <%--<tr>--%>
-            <%--<td colspan="6" align="right">--%>
-            <%--<span>×Ü¼Æ£º</span><span class="price_t">&yen;<span id="total">${total }</span></span>--%>
-            <%--</td>--%>
-            <%--</tr>--%>
-            <tr style="height: 40px;">
-                <td colspan="5" bgcolor=""><span style="font-weight: 900">ÊÕ»õµØÖ·</span></td>
+            <c:forEach items="${cartItemList}" var="cartItem"><!--ä½¿ç”¨elè¡¨è¾¾å¼""ç­‰èŠ±æ‹¬å·å¤–é¢ä¸èƒ½åŠ ç©ºæ ¼ èŠ±æ‹¬å·é‡Œé¢å¯ä»¥åŠ ç©ºæ ¼-->
+            <tr align="center">
+                <td align="right">
+                    <a class="linkImage" href="<c:url value=''/>"><img border="0" width="54" align="top"
+                                                                       src="<c:url value='/${cartItem.products.p_path}'/>"/></a>
+                </td>
+                <td align="left">
+                    <a href="<c:url value=''/>"><span>${cartItem.products.p_name }</span></a>
+                </td>
+                <td>&yen;${cartItem.products.p_price }</td>
+                <td>${cartItem.quantity }</td>
+                <td>
+                    <span class="price_n">&yen;<span
+                            class="subtotal">${cartItem.quantity*cartItem.products.p_price}</span></span>
+                </td>
             </tr>
-            <tr style="height: 40px;">
-                <td colspan="6">
-                    <input id="addr" type="text" name="address" value=""/>
+            </c:forEach>
+            <tr>
+                <td colspan="6" align="right">
+                    <span>æ€»è®¡ï¼š</span><span class="price_t">&yen;<span id="total"></span></span>
                 </td>
             </tr>
             <tr style="height: 40px;">
+                <td  bgcolor="" ><span style="font-weight: 900">æ”¶è´§åœ°å€</span></td>
+                <td  bgcolor="" colspan="4"><input id="address" type="text" name="address" value=""/></td>
+            </tr>
+            <tr style="height: 40px;">
+                <td  bgcolor="" ><span style="font-weight: 900">æ”¶ä»¶äºº</span></td>
+                <td  bgcolor="" colspan="4"><input id="receiveName" type="text" name="receiveName" value=""/></td>
+            </tr>
+            <tr style="height: 40px;">
+                <td  bgcolor="" ><span style="font-weight: 900">æ”¶ä»¶äººæ‰‹æœºå·</span></td>
+                <td  bgcolor=""  colspan="4"><input id="receivePhone" type="text" name="receivePhone" value=""/></td>
+            </tr>
+            <tr style="height: 40px;">
                 <td style="border-top-width: 4px;" colspan="5" align="right">
-                    <a id="linkSubmit" href="javascript:$('#form1').submit();">Ìá½»¶©µ¥</a>
+                    <a id="linkSubmit" href="javascript:$('#form1').submit();">æäº¤è®¢å•</a>
                 </td>
             </tr>
         </table>
     </form>
 </div>
 
-<div class="tuijian"><span class="tword">ÈÈÏúÍÆ¼ö</span></div>
+<div class="tuijian"><span class="tword">çƒ­é”€æ¨è</span></div>
 <div id="slider">
     <div class="spic">
-        <img src="images/buou1.jpg" />
-        <a href="boou.jsp">²¼Å¼Ã¨</a>
+        <img src="${pageContext.request.contextPath}/images/buou1.jpg"/>
+        <a href="boou.jsp">å¸ƒå¶çŒ«</a>
     </div>
     <div class="spic">
-        <img src="images/bosi.jpg" />
-        <a href="#">²¨Ë¹Ã¨</a>
+        <img src="${pageContext.request.contextPath}/images/bosi.jpg"/>
+        <a href="#">æ³¢æ–¯çŒ«</a>
     </div>
     <div class="spic">
-        <img src="images/eluo.jpg" />
-        <a href="lm.jsp">¶íÂŞË¹À¶Ã¨</a>
+        <img src="${pageContext.request.contextPath}/images/eluo.jpg"/>
+        <a href="lm.jsp">ä¿„ç½—æ–¯è“çŒ«</a>
     </div>
     <div class="spic">
-        <img src="images/5.jpg" />
-        <a href="jm.jsp">½ğÃ«</a>
+        <img src="${pageContext.request.contextPath}/images/5.jpg"/>
+        <a href="jm.jsp">é‡‘æ¯›</a>
     </div>
     <div class="spic">
-        <img src="images/buou2.jpg" />
-        <a href="buou1.jsp">²¼Å¼Ã¨</a>
+        <img src="${pageContext.request.contextPath}/images/buou2.jpg"/>
+        <a href="buou1.jsp">å¸ƒå¶çŒ«</a>
     </div>
     <div class="spic">
-        <img src="images/photos/img02.jpg" />
-        <a href="alasijia.jsp">°¢À­Ë¹¼Ó</a>
+        <img src="${pageContext.request.contextPath}/images/photos/img02.jpg"/>
+        <a href="alasijia.jsp">é˜¿æ‹‰æ–¯åŠ </a>
     </div>
 </div>
 <div class="footer">
-    <div class="wen">ÏëÁË½â¸ü¶àĞÅÏ¢»¶Ó­ÖÂµç</div>
+    <div class="wen">æƒ³äº†è§£æ›´å¤šä¿¡æ¯æ¬¢è¿è‡´ç”µ</div>
 
     <div class="sos">
         <div class="sinp"><input type="text"></div>
-        <div class="sod">µç»°£º8888888</div>
+        <div class="sod">ç”µè¯ï¼š8888888</div>
     </div>
 
-    <div class="guanjian">ÎÂË³Ğ¡Ã¨&nbsp;&nbsp;&nbsp;&nbsp;¸ãĞ¦¹·¹·&nbsp;&nbsp;&nbsp;&nbsp;»îÆÃµÄÃ¨&nbsp;&nbsp;&nbsp;&nbsp;
-        ´ÏÃ÷µÄ¹·</div>
+    <div class="guanjian">æ¸©é¡ºå°çŒ«&nbsp;&nbsp;&nbsp;&nbsp;æç¬‘ç‹—ç‹—&nbsp;&nbsp;&nbsp;&nbsp;æ´»æ³¼çš„çŒ«&nbsp;&nbsp;&nbsp;&nbsp;
+        èªæ˜çš„ç‹—
+    </div>
 
 
     <div class="santu">
         <div class="santu1">
-            <div class=""><img src="images/zhen.jpg" ></div>
-            <div>ÕıÆ·±£ÕÏ</div>
+            <div class=""><img src="${pageContext.request.contextPath}/images/zhen.jpg"></div>
+            <div>æ­£å“ä¿éšœ</div>
         </div>
         <div class="santu2">
-            <div class=""><img src="images/zhen2.jpg" ></div>
-            <div>30ÌìÎŞÀíÓÉb°üÍË»»</div>
+            <div class=""><img src="${pageContext.request.contextPath}/images/zhen2.jpg"></div>
+            <div>30å¤©æ— ç†ç”±båŒ…é€€æ¢</div>
         </div>
         <div class="santu3">
-            <div class=""><img src="images/zhen3.jpg" ></div>
-            <div>48Ğ¡Ê±ÉÁµç·¢»õ</div>
+            <div class=""><img src="${pageContext.request.contextPath}/images/zhen3.jpg"></div>
+            <div>48å°æ—¶é—ªç”µå‘è´§</div>
         </div>
     </div>
 
 
     <br>
-</div>
-<script type="text/javascript">
-    /*»òÕß²»ÓÃjquery*/
-    /*ÉÌÆ·ÊıÁ¿¿òÊäÈë*/
-    function keyup(){
-        var quantity = document.getElementById("quantity").value;
-        if(isNaN(quantity) ||  parseInt(quantity)!=quantity || parseInt(quantity)<1){
-            quantity = 1;
-            return;
-        }
-        if(quantity>=10){
-            document.getElementById("quantity").value=quantity.substring(0,quantity.length-1);
-            alert("ÉÌÆ·ÊıÁ¿²»ÄÜ´óÓÚ10");
-        }
-    }
 
-    /*ÉÌÆ·ÊıÁ¿+1*/
-    function numAdd(){
-        var quantity = document.getElementById("quantity").value;
-        var num_add = parseInt(quantity)+1;
-        var price=document.getElementById("price").value;
-        if(quantity==""){
-            num_add = 1;
-        }
-        if(num_add>=10){
-            document.getElementById("quantity").value=num_add-1;
-            alert("ÉÌÆ·ÊıÁ¿²»ÄÜ´óÓÚ10");
-        }else{
-            document.getElementById("quantity").value=num_add;
-            var Num=price*num_add;
-            document.getElementById("totalPrice").innerHTML=Num.toFixed(2);
-        }
-    }
-    /*ÉÌÆ·ÊıÁ¿-1*/
-    function numDec(){
-        var quantity = document.getElementById("quantity").value;
-        var price=document.getElementById("price").value;
-        var num_dec = parseInt(quantity)-1;
-        if(num_dec>0){
-            document.getElementById("quantity").value=num_dec;
-            var Num=price*num_dec;
-            document.getElementById("totalPrice").innerHTML=Num.toFixed(2);
-        }
-    }
-    /*function show()
-    {
-        document.getElementById("totalPrice").innerHTML=3.25*3;
-    } */
-</script>
+</div>
 </body>
 </html>

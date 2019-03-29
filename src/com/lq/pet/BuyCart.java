@@ -22,52 +22,52 @@ public class BuyCart extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//��ȡѡ�е�id��Ȼ����ת����ַ��дҳ�棬д���ַ��ͨ��getparameter��ȡ��ַ����д��Ϣ��ȷ�Ϲ�����ת��ҳ��
-		//��ѯ��Ӧ��id��cart�е���Ϣ������ϵ�ַ��Ϣ��д����ϸ���������ݿ⣬Ȼ���ڶ������ݿ��н��ѹ���������Ƴ�
-		PrintWriter out =resp.getWriter();
-		HttpSession session=req.getSession();
-		if(req.getParameterValues("p_kid")==null){
-			out.print("��ѡ������Ҫ�������Ʒ");
-			resp.setHeader("refresh", "2;url=gouwuche.jsp");//ˢ��
-			return;
-		}
-		if(req.getParameter("o_name")==null||req.getParameter("o_address")==null||req.getParameter("o_phone")==null){
-			out.print("����д�����ϸ��Ϣ");
-			resp.setHeader("refresh", "2;url=test.jsp");//ˢ��
-			return;
-		}
-		//List<Cart> carts=new ArrayList<Cart>();
-		List<Order_detail> list=new ArrayList<Order_detail>();
-		//int c_id=Integer.valueOf(req.getParameter("p_kid"));
-		//***************************************************���
-		String p_kids[]=req.getParameterValues("p_kid");
-		int[] c_ids=new int[p_kids.length];
-		String o_name=req.getParameter("o_name");
-		int o_phone=Integer.valueOf(req.getParameter("o_phone"));
-		String o_address=req.getParameter("o_address");
-		o_name=new String(o_name.getBytes("iso-8859-1"),"gbk");
-		o_address=new String(o_address.getBytes("iso-8859-1"),"gbk");
-		System.out.println("�û���Ϊ++++++++++++++++++++"+o_name);
-		for(int i=0;i<c_ids.length;i++){
-			System.out.println("δ����1111111111111111111111111111");
-			c_ids[i]=Integer.valueOf(p_kids[i]);
-			System.out.println("����ѭ������ȡ����Ʒ���"+c_ids[i]);
-			//carts=(List<Cart>) session.getAttribute("queryCart");
-			System.out.println("δ����2222222222222222222222222222222222");
-			list=Query(c_ids[i], o_name, o_phone, o_address);//��ȡ��ѯ����cart��Ϣ��������Ϣ��װ����ϸ��Ϣ���е�����
-			System.out.println("δ����3333333333333333333333333333333333333333333");
-			if(UpdateOrder(list)){
-				System.out.println("����ɹ�");
-				//carts.remove(c_ids[i]);//���ѹ���Ĺ��ﳵ����ɾ����ֱ��ɾ�����ﳵ��
-				if(deleteCart(c_ids[i])){
-					System.out.println("ɾ���ɹ�");
-				}
-				else{
-					System.out.println("ɾ�����ɹ�");
-				}
-				
-			}
-		}
+//		//��ȡѡ�е�id��Ȼ����ת����ַ��дҳ�棬д���ַ��ͨ��getparameter��ȡ��ַ����д��Ϣ��ȷ�Ϲ�����ת��ҳ��
+//		//��ѯ��Ӧ��id��cart�е���Ϣ������ϵ�ַ��Ϣ��д����ϸ���������ݿ⣬Ȼ���ڶ������ݿ��н��ѹ���������Ƴ�
+//		PrintWriter out =resp.getWriter();
+//		HttpSession session=req.getSession();
+//		if(req.getParameterValues("p_kid")==null){
+//			out.print("��ѡ������Ҫ�������Ʒ");
+//			resp.setHeader("refresh", "2;url=gouwuche.jsp");//ˢ��
+//			return;
+//		}
+//		if(req.getParameter("o_name")==null||req.getParameter("o_address")==null||req.getParameter("o_phone")==null){
+//			out.print("����д�����ϸ��Ϣ");
+//			resp.setHeader("refresh", "2;url=test.jsp");//ˢ��
+//			return;
+//		}
+//		//List<Cart> carts=new ArrayList<Cart>();
+//		List<Order_detail> list=new ArrayList<Order_detail>();
+//		//int c_id=Integer.valueOf(req.getParameter("p_kid"));
+//		//***************************************************���
+//		String p_kids[]=req.getParameterValues("p_kid");
+//		int[] c_ids=new int[p_kids.length];
+//		String o_name=req.getParameter("o_name");
+//		int o_phone=Integer.valueOf(req.getParameter("o_phone"));
+//		String o_address=req.getParameter("o_address");
+//		o_name=new String(o_name.getBytes("iso-8859-1"),"gbk");
+//		o_address=new String(o_address.getBytes("iso-8859-1"),"gbk");
+//		System.out.println("�û���Ϊ++++++++++++++++++++"+o_name);
+//		for(int i=0;i<c_ids.length;i++){
+//			System.out.println("δ����1111111111111111111111111111");
+//			c_ids[i]=Integer.valueOf(p_kids[i]);
+//			System.out.println("����ѭ������ȡ����Ʒ���"+c_ids[i]);
+//			//carts=(List<Cart>) session.getAttribute("queryCart");
+//			System.out.println("δ����2222222222222222222222222222222222");
+//			list=Query(c_ids[i], o_name, o_phone, o_address);//��ȡ��ѯ����cart��Ϣ��������Ϣ��װ����ϸ��Ϣ���е�����
+//			System.out.println("δ����3333333333333333333333333333333333333333333");
+//			if(UpdateOrder(list)){
+//				System.out.println("����ɹ�");
+//				//carts.remove(c_ids[i]);//���ѹ���Ĺ��ﳵ����ɾ����ֱ��ɾ�����ﳵ��
+//				if(deleteCart(c_ids[i])){
+//					System.out.println("ɾ���ɹ�");
+//				}
+//				else{
+//					System.out.println("ɾ�����ɹ�");
+//				}
+//
+//			}
+//		}
 		resp.sendRedirect("shopping1.jsp");
 		return;
 		

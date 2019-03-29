@@ -23,9 +23,33 @@ public interface CartService {
     public void addCartItemInfo(String p_kid,String u_id,String quantity);
 
     /**
+     * 购物车数量减数量
+     * @param cartItemId 购物车id
+     * @param quantity  数量
+     * @return
+     */
+    public CartItem lessCartItemInfo(String cartItemId, String quantity);
+
+
+    /**
      * 查询用户所有的购物
      * @param u_id
      * @return
      */
     public List<CartItem> queryCartItems(String u_id);
+
+    /**
+     * 根据购物车id 删除购物车
+     * @param cartItems 以;分号分割的购物车id
+     * @return
+     */
+    public boolean deleteCartItemInfo(String cartItems);
+
+    /**
+     * 根据购物车id查询购物车信息
+     * @param cartItems
+     * @return
+     */
+    public List<CartItem> queryCartItemInfos(String cartItems);
+
 }
