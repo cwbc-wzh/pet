@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lq.mapper.CommentMapper">
+    <select id="queryCommetInfo" resultType="commentInfo">
+        select * from comment c, user u WHERE c.status=#{type} and c.u_id=u.u_name
+            ORDER by c.create_date DESC
+              limit #{currPage},#{end}
+    </select>
+
+    <select id="queryCommentCount" resultType="int">
+          select COUNT(*) from comment WHERE status=#{type}
+    </select>
+</mapper>

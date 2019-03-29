@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lq.mapper.NoticeMapper">
+    <!--查询公告-->
+    <select id="queryNoticeList" resultType="notice">
+          select * from notice WHERE notice_status=#{type}
+            ORDER by createdate DESC
+              limit #{currPage},#{end}
+    </select>
+
+    <select id="queryNoticeCount" resultType="int" >
+            select COUNT(*) from notice WHERE notice_status=#{type}
+    </select>
+</mapper>

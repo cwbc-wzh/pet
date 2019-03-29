@@ -112,26 +112,52 @@
             <div class="les-news js-les-tab">
                 <div class="bd tab-cont">
                     <ul class="news-list">
-                        <li class="item">
-                            <div class="info-box c">
-                                <h3 class="title ell"><a target="_blank" href="">公猫与母猫相比，哪种更与人亲近，为什么？</a></h3>
-                                <p class="source">
-                                    <span class="icon-author">编辑：Aeson</span>
-
-                                </p>
-                                <p class="summary">这个其实因猫而异，亲人与否在从出生到四月龄前的社会化过程中就已经决定了。</p>
-
-                            </div>
-                            <div class="photo">
-                                <a target="_blank" href="http://www.yc.cn/news/news-41244.html">
-                                    <img src="${pageContext.request.contextPath}/images/bg1.jpg" alt="公猫与母猫相比，哪种更与人亲近，为什么？">
-                                </a>
-                            </div>
-                        </li>
+                        <c:forEach items="${sessionScope.noticeList.lists}" var="notice">
+                            <li class="item">
+                                <div class="info-box c">
+                                    <h3 class="title ell"><a target="_blank" href="">${notice.notice_title}</a></h3>
+                                    <p class="source">
+                                        <span class="icon-author">编辑：${notice.u_id}</span>
+                                    </p>
+                                    <p class="summary">${notice.notice_content}</p>
+                                </div>
+                                <div class="photo">
+                                    <a target="_blank" href="http://www.yc.cn/news/news-41244.html">
+                                        <img src="${pageContext.request.contextPath}/${notice.imagePath}"
+                                             alt="${notice.notice_content}">
+                                    </a>
+                                </div>
+                            </li>
+                        </c:forEach>
 
                         <div class="paging">
-                            <ul class="paging-wrap">
-                                <li><a class="current" href="http://www.yc.cn/news/zuixin?cateId=52&amp;size=10&amp;page=1">1</a></li> <li><a href="http://www.yc.cn/news/zuixin?cateId=52&amp;size=10&amp;page=2">2</a></li> <li><a href="http://www.yc.cn/news/zuixin?cateId=52&amp;size=10&amp;page=3">3</a></li> <li class="ellipsis">...</li> <li><a href="http://www.yc.cn/news/zuixin?cateId=52&amp;size=10&amp;page=236">236</a></li> <li class="paging-next"><a class="paging-next" href="http://www.yc.cn/news/zuixin?cateId=52&amp;size=10&amp;page=2">下一页</a></li>
+                            <ul class=" paging-wrap">
+                                <li>
+                                    <span>第${sessionScope.noticeList.currPage+1}/ ${sessionScope.noticeList.totalPage}页</span>
+                                    <span>总记录数：${sessionScope.noticeList.totalCount }  每页显示:${sessionScope.noticeList.pageSize}</span>
+                                </li>
+                                <c:if test="${sessionScope.noticeList.currPage != 0}">
+                                    <li class="paging-next">
+                                        <a class="paging-next"
+                                           href="${pageContext.request.contextPath }/loadSellerShow.do?currentPage=0">[首页]</a>
+                                    </li>
+                                    <li class="paging-next">
+                                        <a class="paging-next"
+                                           href="${pageContext.request.contextPath }/loadSellerShow.do?currentPage=${sessionScope.noticeList.currPage-1}">[上一页]</a>
+                                    </li>
+
+                                </c:if>
+
+                                <c:if test="${sessionScope.noticeList.currPage+1!= sessionScope.noticeList.totalPage}">
+                                    <li class="paging-next">
+                                        <a class="paging-next"
+                                           href="${pageContext.request.contextPath }/loadSellerShow.do?currentPage=${sessionScope.noticeList.currPage+1}">[下一页]</a>
+                                    </li>
+                                    <li class="paging-next">
+                                        <a class="paging-next"
+                                           href="${pageContext.request.contextPath }/loadSellerShow.do?currentPage=${sessionScope.noticeList.totalPage-1}">[尾页]</a>
+                                    </li>
+                                </c:if>
                             </ul>
                         </div>
                     </ul>

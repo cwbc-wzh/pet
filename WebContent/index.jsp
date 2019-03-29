@@ -62,8 +62,8 @@
         </li>
         <li><a href="">用户心声</a>
             <ul>
-                <li><a href="${pageContext.request.contextPath}/animalshowjsp/notice/sellerShow.jsp">卖家秀</a></li>
-                <li><a href="${pageContext.request.contextPath}/animalshowjsp/notice/messageBoard.jsp">留言板</a></li>
+                <li><a href="${pageContext.request.contextPath}/loadSellerShow.do">卖家秀</a></li>
+                <li><a href="${pageContext.request.contextPath}/loadMessageBoardJsp.do">留言板</a></li>
             </ul>
         </li>
         <li><a href="">关于我们</a>
